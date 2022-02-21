@@ -2,6 +2,18 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 
+## RETO1 - Crear proyecto
+    ng new nombreProyecto
+## RETO2 - Estructura carpetas
+## RETO3 - Components
+    ng g c nombreComponent(ng generate component)
+## RETO4 - Interpolación
+
+
+
+
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
