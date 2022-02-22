@@ -5,35 +5,36 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Run `ng serve or npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. We can see the application in local.
 
 ### RETO1 - Crear proyecto
-    ng new nombreProyecto
+ng new nombreProyecto
 ### RETO2 - Estructura carpetas
 ### RETO3 - Components
-    ng g c nombreComponent(ng generate component)
-    redenrización - reutilización del código
-    decorador @Component - transforma o convierte una clase
-    creación del button. En html <app-button></app-button> La información viene del .ts
+ng g c nombreComponent(ng generate component)
+redenrización - reutilización del código
+decorador `@Component` - transforma o convierte una clase
+creación del button. En html <app-button></app-button> La información viene del .ts
 ### RETO4 - Interpolación && one way data binding
-    Nos permite escribir una cadena de texto entre elementos de html. 
-        <!--interpolacion en elementos html-->
+Nos permite escribir una cadena de texto entre elementos de html. 
+
+        `<!--interpolacion en elementos html-->
         <p>{{ title }} con Angular</p>
         <!--interpolacion en calculos matematicos. One way, no se puede modificar-->
-        <p>Total: {{ 5+5 }}</p>
-    También se puede utilizar en los atributos.
+        <p>Total: {{ 5+5 }}</p>`
+        
+        También se puede utilizar en los atributos.
         <!--interpolacion en atributos-->
         <img src="{{ url }}" alt="">
 ### RETO5 - Enlace de datos bidireccional && two-way data binding
-    Enlazar una propiedad que esta en .ts imprimirla o tenerla en html y modificar su valor simultaneamente
-    `[(ngModel)]`(banana on the box) - importaremos el módulo del formulario. Crea una instancia del formControl para enlazar el modelo del form al input. Injectamos en appmodule el FormsModule. Pasos:
+Enlazar una propiedad que esta en .ts imprimirla o tenerla en html y modificar su valor simultaneamente
+`[(ngModel)]` (banana on the box) - importaremos el módulo del formulario. Crea una instancia del formControl para enlazar el modelo del form al input. Injectamos en appmodule el FormsModule. Pasos:
+
         1. creamos la propiedad en .ts
         2. creamos el input en .html
         3. importamos el módulo FormsModule en .module
         
         <p>El nombr es: {{ name }}</p>
         <input type="text" [(ngModel)]="name">
-
-
-
-
+        
+![two-way data biding](https://user-images.githubusercontent.com/67627523/155089318-cb3713d6-cf2f-4059-8460-0569658d2702.png)
 
 
 
