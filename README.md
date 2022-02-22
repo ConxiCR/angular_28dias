@@ -1,22 +1,35 @@
 # Angular28Dias
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
+#### Development server
+Run `ng serve or npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. We can see the application in local.
 
-## RETO1 - Crear proyecto
+### RETO1 - Crear proyecto
     ng new nombreProyecto
-## RETO2 - Estructura carpetas
-## RETO3 - Components
+### RETO2 - Estructura carpetas
+### RETO3 - Components
     ng g c nombreComponent(ng generate component)
-## RETO4 - Interpolación
+    redenrización - reutilización del código
+    decorador @Component - transforma o convierte una clase
+    creación del button. En html <app-button></app-button> La información viene del .ts
+### RETO4 - Interpolación && one way data binding
+    Nos permite escribir una cadena de texto entre elementos de html. 
+        <!--interpolacion en elementos html-->
+        <p>{{ title }} con Angular</p>
+        <!--interpolacion en calculos matematicos. One way, no se puede modificar-->
+        <p>Total: {{ 5+5 }}</p>
+    También se puede utilizar en los atributos.
+        <!--interpolacion en atributos-->
+        <img src="{{ url }}" alt="">
 
 
 
 
 
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+
 
 ## Code scaffolding
 
