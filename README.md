@@ -21,6 +21,19 @@ Run `ng serve or npm start` for a dev server. Navigate to `http://localhost:4200
     También se puede utilizar en los atributos.
         <!--interpolacion en atributos-->
         <img src="{{ url }}" alt="">
+### RETO5 - Enlace de datos bidireccional && two-way data binding
+    Enlazar una propiedad que esta en .ts imprimirla o tenerla en html y modificar su valor simultaneamente
+    `[(ngModel)]`(banana on the box) - importaremos el módulo del formulario. Crea una instancia del formControl para enlazar el modelo del form al input. Injectamos en appmodule el FormsModule. Pasos:
+        1. creamos la propiedad en .ts
+        2. creamos el input en .html
+        3. importamos el módulo FormsModule en .module
+        
+        <p>El nombr es: {{ name }}</p>
+        <input type="text" [(ngModel)]="name">
+
+
+
+
 
 
 
