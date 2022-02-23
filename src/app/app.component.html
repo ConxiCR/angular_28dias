@@ -8,5 +8,11 @@
 
 <img src="{{ url }}" alt="">-->
 
-<p>El nombr es: {{ name }}</p>
+<!--mostramos el name cuando tenga un valor, sino bacio-->
+<p *ngIf="name">El nombre es: {{ name }}</p>
 <input type="text" [(ngModel)]="name">
+<!--renderizamos cities utilizando la directiva ngFor con una variable local-->
+<ul>
+    <li *ngFor="let city of cities">{{city}}</li>
+    
+</ul>

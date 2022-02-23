@@ -1,18 +1,23 @@
 # Angular28Dias
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
-#### Development server
+[#### Development server]
+(https://www.youtube.com/watch?v=8Fwwhjt3jjE&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=1)
 Run `ng serve or npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. We can see the application in local.
 
-### RETO1 - Crear proyecto
+[### RETO1 - Crear proyecto]
+(https://www.youtube.com/watch?v=UW09Ky62fzo&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=2)
 ng new nombreProyecto
 ### RETO2 - Estructura carpetas
+(https://www.youtube.com/watch?v=UW09Ky62fzo&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=2)
 ### RETO3 - Components
+(https://www.youtube.com/watch?v=MX4iPpFVsRc&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=3)
 ng g c nombreComponent(ng generate component)
 redenrización - reutilización del código
 decorador `@Component` - transforma o convierte una clase
 creación del button. En html <app-button></app-button> La información viene del .ts
 ### RETO4 - Interpolación && one way data binding
+(https://www.youtube.com/watch?v=qjuYVJPb_Qg&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=4)
 Nos permite escribir una cadena de texto entre elementos de html. 
 
         `<!--interpolacion en elementos html-->
@@ -24,6 +29,7 @@ Nos permite escribir una cadena de texto entre elementos de html.
         <!--interpolacion en atributos-->
         <img src="{{ url }}" alt="">
 ### RETO5 - Enlace de datos bidireccional && two-way data binding
+(https://www.youtube.com/watch?v=EuFh5s5lYIU&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=5)
 Enlazar una propiedad que esta en .ts imprimirla o tenerla en html y modificar su valor simultaneamente
 `[(ngModel)]` (banana on the box) - importaremos el módulo del formulario. Crea una instancia del formControl para enlazar el modelo del form al input. Injectamos en appmodule el FormsModule. Pasos:
 
@@ -35,15 +41,15 @@ Enlazar una propiedad que esta en .ts imprimirla o tenerla en html y modificar s
         <input type="text" [(ngModel)]="name">
         
 ![two-way data biding](https://user-images.githubusercontent.com/67627523/155089318-cb3713d6-cf2f-4059-8460-0569658d2702.png)
-
-
-
-
-
-
-
-
-
+### RETO6 - ¿Qué es una directiva? ngIf, ngFor
+(https://www.youtube.com/watch?v=ZUX_K4jR-9Q&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=6)
+Directivas, atributos que pueden cambiar la apariencia o el comportamiento del DOM element.
+Hay 4 tipos: 
+       . estructurales(pueden modificar elementos del DOM)
+       . De atributos
+       . Customs
+       . componentes(directivas con template).
+Directivas estructurales `ngIf` `nFor`
 
 ## Code scaffolding
 
