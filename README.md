@@ -68,6 +68,19 @@ Directivas estructurales `ngIf` `nFor`
    <li [ngStyle]= "{'color': 'white', 'background-color': city === 'Madrid' ? 'blue' : 'green'}">{{city}}</li>
 </ul>
 
+### RETO8 Ciclo de vida componente Angular
+https://www.youtube.com/watch?v=8lHdqC1GDGs&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=8
+
+`Ciclo de Vida`
+https://docs.google.com/presentation/d/1-XqwFA0ph5YTMwP9cjIqWSHR0BL04Xq1tw0Cmxcsk0U/edit#slide=id.g35f391192_00
+
+Para utilizar los métodos, primero hemos de impletar la inteface en la clase. 
+`OnChanges` - se ejecuta siempre y cuando hayan inputs & outputs.
+`OnInit` sería el segundo o el primero si no hay OnChanges
+`OnDestroyed`
+
+
+
 
 ## Code scaffolding
 
