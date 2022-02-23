@@ -12,7 +12,13 @@
 <p *ngIf="name">El nombre es: {{ name }}</p>
 <input type="text" [(ngModel)]="name">
 <!--renderizamos cities utilizando la directiva ngFor con una variable local-->
-<ul>
-    <li *ngFor="let city of cities">{{city}}</li>
-    
+<ul *ngFor="let city of cities">
+   <!--<li {{city}}</li>-->
+    <!--pasamos un string. Clase-->
+    <!--<li [ngClass]= "'selected blue'">{{city}}</li>-->
+    <!--pasamos un array de strings. Siempre es mas facil añadir clases-->
+    <!--<li [ngClass]= "['selected', 'blue']">{{city}}</li>-->
+    <!--pasamos un objeto. Si la condición se cumple se aplica la clase-->
+    <li [ngClass]= "{'selected': city === 'Barcelona', 'blue': city != 'Barcelona'}">{{city}}</li>
+    <li [ngStyle]= "{'color': 'white', 'background-color': city === 'Madrid' ? 'blue' : 'green'}">{{city}}</li>
 </ul>

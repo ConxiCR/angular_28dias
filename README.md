@@ -1,12 +1,12 @@
 # Angular28Dias
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
-[#### Development server]
-(https://www.youtube.com/watch?v=8Fwwhjt3jjE&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=1)
+#### Development server
+
 Run `ng serve or npm start` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files. We can see the application in local.
 
-[### RETO1 - Crear proyecto]
-(https://www.youtube.com/watch?v=UW09Ky62fzo&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=2)
+### RETO1 - Crear proyecto
+(https://www.youtube.com/watch?v=8Fwwhjt3jjE&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=1)
 ng new nombreProyecto
 ### RETO2 - Estructura carpetas
 (https://www.youtube.com/watch?v=UW09Ky62fzo&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=2)
@@ -50,6 +50,24 @@ Hay 4 tipos:
        . Customs
        . componentes(directivas con template).
 Directivas estructurales `ngIf` `nFor`
+### RETO7 - ¿Qué son las directivas de atributos? ngClass, ngStyle
+(https://www.youtube.com/watch?v=9ZExEHDREeQ&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=7)
+`ngClass` permite de manera dinámica añadir o eleminar una clase de un elemento
+<ul *ngFor="let city of cities">
+   <!--<li {{city}}</li>-->
+    <!--pasamos un string. Clase-->
+    <li [ngClass]= "'selected blue'">{{city}}</li>
+    <!--pasamos un array de strings. Siempre es mas facil añadir clases-->
+    <li [ngClass]= "['selected', 'blue']">{{city}}</li>
+    <!--pasamos un objeto. Si la condición se cumple se aplica la clase-->
+    <li [ngClass]= "{'selected': city === 'Barcelona', 'blue': city != 'Barcelona'}">{{city}}</li>
+</ul>
+
+`ngStyle` para cuando se necesite aplicar estilo directamente en el html sin scss
+<ul *ngFor="let city of cities">
+   <li [ngStyle]= "{'color': 'white', 'background-color': city === 'Madrid' ? 'blue' : 'green'}">{{city}}</li>
+</ul>
+
 
 ## Code scaffolding
 
