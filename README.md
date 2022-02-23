@@ -53,20 +53,22 @@ Directivas estructurales `ngIf` `nFor`
 ### RETO7 - ¿Qué son las directivas de atributos? ngClass, ngStyle
 (https://www.youtube.com/watch?v=9ZExEHDREeQ&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=7)
 `ngClass` permite de manera dinámica añadir o eleminar una clase de un elemento
-<ul *ngFor="let city of cities">
-   <!--<li {{city}}</li>-->
-    <!--pasamos un string. Clase-->
-    <li [ngClass]= "'selected blue'">{{city}}</li>
-    <!--pasamos un array de strings. Siempre es mas facil añadir clases-->
-    <li [ngClass]= "['selected', 'blue']">{{city}}</li>
-    <!--pasamos un objeto. Si la condición se cumple se aplica la clase-->
-    <li [ngClass]= "{'selected': city === 'Barcelona', 'blue': city != 'Barcelona'}">{{city}}</li>
-</ul>
+
+        <ul *ngFor="let city of cities">
+           <!--<li {{city}}</li>-->
+            <!--pasamos un string. Clase-->
+            <li [ngClass]= "'selected blue'">{{city}}</li>
+            <!--pasamos un array de strings. Siempre es mas facil añadir clases-->
+            <li [ngClass]= "['selected', 'blue']">{{city}}</li>
+            <!--pasamos un objeto. Si la condición se cumple se aplica la clase-->
+            <li [ngClass]= "{'selected': city === 'Barcelona', 'blue': city != 'Barcelona'}">{{city}}</li>
+        </ul>
 
 `ngStyle` para cuando se necesite aplicar estilo directamente en el html sin scss
-<ul *ngFor="let city of cities">
-   <li [ngStyle]= "{'color': 'white', 'background-color': city === 'Madrid' ? 'blue' : 'green'}">{{city}}</li>
-</ul>
+
+        <ul *ngFor="let city of cities">
+           <li [ngStyle]= "{'color': 'white', 'background-color': city === 'Madrid' ? 'blue' : 'green'}">{{city}}</li>
+        </ul>
 
 ### RETO8 Ciclo de vida componente Angular
 https://www.youtube.com/watch?v=8lHdqC1GDGs&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=8
@@ -79,6 +81,7 @@ Para utilizar los métodos, primero hemos de impletar la inteface en la clase.
 `OnInit` sería el segundo o el primero si no hay OnChanges
 `OnDestroyed`
 
+![image](https://user-images.githubusercontent.com/67627523/155305960-faf8f915-c207-4d9e-80a9-81b2ae970854.png)
 
 
 
