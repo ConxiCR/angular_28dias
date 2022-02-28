@@ -87,17 +87,17 @@ Para utilizar los métodos, primero hemos de impletar la inteface en la clase.
 https://www.youtube.com/watch?v=0qvQ_0A35b8&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=9
 Escuchar y responder a las acciones como click, movimiento del mouse, pulsar teclas, etc.
 
-<ul *ngFor="let city of cities">
- <!--event biding-->
-<li (click)="onCityClicked(city)" [ngClass]= "{'selected': city === selection}">{{city}}</li>
-</ul>
+    <ul *ngFor="let city of cities">
+     <!--event biding-->
+    <li (click)="onCityClicked(city)" [ngClass]= "{'selected': city === selection}">{{city}}</li>
+    </ul>
 
-<div *ngIf="selection">
-    <!--directiva ngIf para que cuando tenga algo se muestre sino no-->
-    <p>Your city is: {{selection}}</p>
-    <!--para limpiar la seleccion creamos un button-->
-    <button (click)="onClear()">Clear your selection</button>
-</div>
+    <div *ngIf="selection">
+        <!--directiva ngIf para que cuando tenga algo se muestre sino no-->
+        <p>Your city is: {{selection}}</p>
+        <!--para limpiar la seleccion creamos un button-->
+        <button (click)="onClear()">Clear your selection</button>
+    </div>
 
 ### RET1O Decorador @Input 
 https://www.youtube.com/watch?v=0JyLTgqGjYo&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=10
@@ -127,6 +127,7 @@ dos properties color y label
         }
         }
 
+![image](https://user-images.githubusercontent.com/67627523/156032460-ec1d9eba-32f7-4c07-a01a-f7cd4aee7a9d.png)![image](https://user-images.githubusercontent.com/67627523/156032598-39c0b982-45a6-4cb0-8f58-ede216f2839b.png)
 
 
 
