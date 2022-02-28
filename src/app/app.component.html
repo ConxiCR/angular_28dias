@@ -19,6 +19,15 @@
     <!--pasamos un array de strings. Siempre es mas facil añadir clases-->
     <!--<li [ngClass]= "['selected', 'blue']">{{city}}</li>-->
     <!--pasamos un objeto. Si la condición se cumple se aplica la clase-->
-    <li [ngClass]= "{'selected': city === 'Barcelona', 'blue': city != 'Barcelona'}">{{city}}</li>
-    <li [ngStyle]= "{'color': 'white', 'background-color': city === 'Madrid' ? 'blue' : 'green'}">{{city}}</li>
+    <!--<li [ngClass]= "{'selected': city === 'Barcelona', 'blue': city != 'Barcelona'}">{{city}}</li>-->
+    <!--<li [ngStyle]= "{'color': 'white', 'background-color': city === 'Madrid' ? 'blue' : 'green'}">{{city}}</li>-->
+    <!--event biding-->
+    <li (click)="onCityClicked(city)" [ngClass]= "{'selected': city === selection}">{{city}}</li>
 </ul>
+
+<div *ngIf="selection">
+    <!--directiva ngIf para que cuando tenga algo se muestre sino no-->
+    <p>Your city is: {{selection}}</p>
+    <!--para limpiar la seleccion creamos un button-->
+    <button (click)="onClear()">Clear your selection</button>
+</div>

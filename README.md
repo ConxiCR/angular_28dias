@@ -83,6 +83,24 @@ Para utilizar los métodos, primero hemos de impletar la inteface en la clase.
 
 ![image](https://user-images.githubusercontent.com/67627523/155305960-faf8f915-c207-4d9e-80a9-81b2ae970854.png)
 
+### RETO9 Event binding
+https://www.youtube.com/watch?v=0qvQ_0A35b8&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=9
+Escuchar y responder a las acciones como click, movimiento del mouse, pulsar teclas, etc.
+
+<ul *ngFor="let city of cities">
+ <!--event biding-->
+<li (click)="onCityClicked(city)" [ngClass]= "{'selected': city === selection}">{{city}}</li>
+</ul>
+
+<div *ngIf="selection">
+    <!--directiva ngIf para que cuando tenga algo se muestre sino no-->
+    <p>Your city is: {{selection}}</p>
+    <!--para limpiar la seleccion creamos un button-->
+    <button (click)="onClear()">Clear your selection</button>
+</div>
+
+
+
 
 
 ## Code scaffolding

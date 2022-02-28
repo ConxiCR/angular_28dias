@@ -13,6 +13,7 @@ export class AppComponent implements OnChanges, OnInit, OnDestroy {
   cities = ['Barcelona', 'Madrid', 'Lima']
   //propiedad. No la estoy definiendo, sólo declarando
   name? : string;
+  selection?: string;
 
   title = 'angular_28Dias';
   url='https://unsplash.com/photos/_bHzC5CSyYY?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink'
@@ -30,6 +31,13 @@ ngOnInit(): void {
 //desuscripciones de los observables. También podemos ver cuando el usuario va a abandonar un determinado componente
 ngOnDestroy(): void {
     console.log('Destroy');
+}
+onCityClicked(city: string): void{
+  console.log('City->', city);
+  this.selection = city;
+}
+onClear(): void{
+  this.selection = '';
 }
 
 }
