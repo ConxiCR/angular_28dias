@@ -1,15 +1,25 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-button',
-  templateUrl: './button.component.html',
+  template: `<button [ngStyle]="{'background-color': color}">{{label}}</button>`,
   styleUrls: ['./button.component.scss']
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent implements OnInit, OnChanges, OnDestroy {
+@Input() color!: string;
+@Input() label!: string;
+@Input() selection!: string;
 
   constructor() { }
-
-  ngOnInit(): void {
+  ngOnChanges(changes:SimpleChanges): void{
+    console.log('changes ->', changes);
   }
+  ngOnInit(): void {
+    console.log('OnInit');
+  }
+  ngOnDestroy(): void {
+    console.log('OnDestroy');
+  }
+
 
 }

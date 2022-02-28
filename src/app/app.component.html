@@ -9,8 +9,8 @@
 <img src="{{ url }}" alt="">-->
 
 <!--mostramos el name cuando tenga un valor, sino bacio-->
-<p *ngIf="name">El nombre es: {{ name }}</p>
-<input type="text" [(ngModel)]="name">
+<!--<p *ngIf="name">El nombre es: {{ name }}</p>
+<input type="text" [(ngModel)]="name">-->
 <!--renderizamos cities utilizando la directiva ngFor con una variable local-->
 <ul *ngFor="let city of cities">
    <!--<li {{city}}</li>-->
@@ -29,5 +29,6 @@
     <!--directiva ngIf para que cuando tenga algo se muestre sino no-->
     <p>Your city is: {{selection}}</p>
     <!--para limpiar la seleccion creamos un button-->
-    <button (click)="onClear()">Clear your selection</button>
+    <!--<button (click)="onClear()">Clear your selection</button>-->
+    <app-button (click)="onClear()" [color]="'blue'" [label]="'Clear your selection'" [selection]="'selection'" ></app-button>
 </div>

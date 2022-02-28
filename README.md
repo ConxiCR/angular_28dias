@@ -99,6 +99,37 @@ Escuchar y responder a las acciones como click, movimiento del mouse, pulsar tec
     <button (click)="onClear()">Clear your selection</button>
 </div>
 
+### RET1O Decorador @Input 
+https://www.youtube.com/watch?v=0JyLTgqGjYo&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=10
+
+Un decorador se puede adjuntar a una clase metodo, propiedad. Modifica el comportamiento.
+En un componente hijo la propiedad va a recibir un valor desde el padre
+
+template: `<button>{{label}}</button>` => se puede hacer en el .html o utilizar el template del .ts
+
+creamos un objeto changes que nos da el nuevo valor y el anterior.
+dos properties color y label
+
+        export class ButtonComponent implements OnInit, OnChanges, OnDestroy {
+        @Input() color!: string;
+        @Input() label!: string;
+        @Input() selection!: string;
+
+        constructor() { }
+        ngOnChanges(changes:SimpleChanges): void{
+        console.log('changes ->', changes);
+        }
+        ngOnInit(): void {
+        console.log('OnInit');
+        }
+        ngOnDestroy(): void {
+        console.log('OnDestroy');
+        }
+        }
+
+
+
+
 
 
 
