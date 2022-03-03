@@ -32,6 +32,9 @@ ngOnInit(): void {
 ngOnDestroy(): void {
     console.log('Destroy');
 }*/
+addNewCity(city: string){
+  this.cities.push(city);
+}
 onCityClicked(city: string): void{
   console.log('City->', city);
   this.selection = city;

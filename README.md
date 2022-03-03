@@ -127,7 +127,57 @@ dos properties color y label
         }
         }
 
-![image](https://user-images.githubusercontent.com/67627523/156032460-ec1d9eba-32f7-4c07-a01a-f7cd4aee7a9d.png)![image](https://user-images.githubusercontent.com/67627523/156032598-39c0b982-45a6-4cb0-8f58-ede216f2839b.png)
+![image](https://user-images.githubusercontent.com/67627523/156032460-ec1d9eba-32f7-4c07-a01a-f7cd4aee7a9d.png)
+![image](https://user-images.githubusercontent.com/67627523/156032598-39c0b982-45a6-4cb0-8f58-ede216f2839b.png)
+
+### RET11 Decorador @Output Angular
+https://www.youtube.com/watch?v=pycu2vAmER4&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=11
+Des del padre hasta el hijo
+Añadimos bootstrap en el css.
+Que necesitamos: decorador @output que nos permite comunicarnos desdel hijo. Nesitamos un input con un label y un botón de añadir para poder añadir ciudades de manera dinámica en lugar de la array de donde las cargamos ahora.
+. Necesitamos un método addNewCity() que no va a devolver nada, pero va a recibir city's
+. Creamos nuevo componente formulario. Y lo aplico en app.component.html
+. Montamos el html del form
+. Que necesito? Cuando introduzco algo en el input y haga click en add necesitamos añadir la información a un método template variable # + nombre(#itemNew):HtmlInputElement
+. Creamos dos propiedades label y className.
+. output para emitir la información del input hacia el padre. El método de guardar esta en el padre (addNewCity). Creamos un evento en el decorador output. En el método onAddNewItem, creamos el método emit de item. Para que nos escuche el padre indicamos en .html del padre llamamos al método del hijo. Al actualizar desaparece la información.
+        `app.component.ts` padre
+        addNewCity(city: string){
+        this.cities.push(city);
+        }
+        `app.component.html` padre
+        <app-form-new-item (newItemEvent)="addNewCity($event)" [label]="'City'" [className]="'btn-info'"></app-form-new-item>
+        `form-new-item.component.ts`
+        export class FormNewItemComponent {
+                @Input() className = 'btn-primary';
+                @Input() label?: string;
+                @Output() newItemEvent = new EventEmitter;
+
+                //método que no devuelve nada. Recibe item
+                onAddNewItem(item: string){
+                console.log('Item ->', item)
+                this.newItemEvent.emit(item);
+                }
+        }
+        `form-new-item.component.html`
+        <form>
+                <div class="row align-items-center">
+                        <div class="col-auto">
+                        <label for="newItem" class="col-form-label">New {{label}}</label>
+                        </div>
+                        <div class="col-auto">
+                        <input type="text" id="newItem" class="form-control" #newItem>
+                        </div>
+                        <div class="col-auto">
+                        <button (click)="onAddNewItem(newItem.value)" type="button" class="btn" [ngClass]="[className]">Add {{label}}</button>
+                        </div>
+
+                </div>
+        </form>
+
+
+       
+        
 
 
 
@@ -135,6 +185,13 @@ dos properties color y label
 
 
 
+
+
+
+
+
+
+ 
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.

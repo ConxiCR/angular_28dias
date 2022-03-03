@@ -1,19 +1,15 @@
 <!--
 <app-button></app-button>
-
 <p>{{ title }} con Angular</p>
-
 <p>Total: {{ 5+5 }}</p>
-
-
 <img src="{{ url }}" alt="">-->
 
 <!--mostramos el name cuando tenga un valor, sino bacio-->
 <!--<p *ngIf="name">El nombre es: {{ name }}</p>
 <input type="text" [(ngModel)]="name">-->
 <!--renderizamos cities utilizando la directiva ngFor con una variable local-->
-<ul *ngFor="let city of cities">
-   <!--<li {{city}}</li>-->
+<!--<ul>-->
+   <!--<li> {{city}}</li>-->
     <!--pasamos un string. Clase-->
     <!--<li [ngClass]= "'selected blue'">{{city}}</li>-->
     <!--pasamos un array de strings. Siempre es mas facil añadir clases-->
@@ -22,13 +18,34 @@
     <!--<li [ngClass]= "{'selected': city === 'Barcelona', 'blue': city != 'Barcelona'}">{{city}}</li>-->
     <!--<li [ngStyle]= "{'color': 'white', 'background-color': city === 'Madrid' ? 'blue' : 'green'}">{{city}}</li>-->
     <!--event biding-->
-    <li (click)="onCityClicked(city)" [ngClass]= "{'selected': city === selection}">{{city}}</li>
-</ul>
+    <!--<li *ngFor="let city of cities" (click)="onCityClicked(city)" [ngClass]= "{'selected': city === selection}">{{city}}</li>
+</ul>-->
 
-<div *ngIf="selection">
+<!--<div *ngIf="selection">-->
     <!--directiva ngIf para que cuando tenga algo se muestre sino no-->
-    <p>Your city is: {{selection}}</p>
+    <!--<p>Your city is: {{selection}}</p>-->
     <!--para limpiar la seleccion creamos un button-->
     <!--<button (click)="onClear()">Clear your selection</button>-->
-    <app-button (click)="onClear()" [color]="'blue'" [label]="'Clear your selection'" [selection]="'selection'" ></app-button>
+    <!--<app-button (click)="onClear()" [color]="'blue'" [label]="'Clear your selection'" [selection]="'selection'" ></app-button>
+</div>-->
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 my-3">
+            <app-form-new-item (newItemEvent)="addNewCity($event)" [label]="'City'" [className]="'btn-info'"></app-form-new-item>
+        </div>
+        <div class="col-md-8">
+            <ul>
+                <li *ngFor="let city of cities" (click)="onCityClicked(city)" [ngClass]= "{'alert alert-info': city === selection}">
+                    {{city}}
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-4">
+            <div *ngIf="selection">
+                <p>Your city is: {{selection}}</p>
+                <app-button (click)="onClear()" [color]="'blue'" [label]="'Clear your selection'">
+                </app-button>
+            </div>
+        </div>
+    </div>
 </div>
