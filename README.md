@@ -180,15 +180,50 @@ https://www.youtube.com/watch?v=UTT90NU_a0A
         `Default` el se encarga de actualizar cuando el modelo cambia para actualizar la vista y viceversa ya que es two ways.` CheckAlways`
         `OnPush`(bajo demanda) `CheckOnce`.
 . Creamos un componente nuevo "cities"
-
-
-
-
 `form-new-item.component.ts` para renderizar. Y lo colocamos en cualquier parte del html. Lo replicamos en todos los componentes hijos.
 counterRender(): boolean{
     console.log('Render Form');
     return true;
   }
+### RET13 ¿Cómo crear un pipe personalizado en Angular?
+
+Pipe sirven para transformar data. Reciben un dato que pueden transformar. Angular tiene dos tipos de pipes, los que vienen por defecto y los custom pipes se adecuan a nuestras necesidades.
+Pueden ser puros o impuros. Los `puros` vienen por defecto. Angular transforma la data y hasta que esa data no vuelve a cambiar Angular no vuelve a computar o realizar esa transformación. Los `impuros` se ejecuta el ciclo de detección de cambios Angular volvera a transformar la data aunque la data no haya cambiado.
+
+Los `pipes por defecto que tiene Angular` hay una lista y se pueden combinar varios pipes.
+        <p>{{'6/15/15, 9:03 AM' | date:'full'}}</p>
+        <p>My birthday is: {{'6/15/15, 9:03 AM' | date:'full' | uppercase}}</p>
+        <p>{{'999' | currency}}</p>
+        <p>{{'999' | currency: 'EUR'}}</p>
+        <p>{{'999' | currency: 'DOP'}}</p>
+Mirar ISO 4217 donde hay todos los códigos para la transformación de monedas.
+
+`pipes customizados`
+. Creamos un pipe, bien automáticamente(ng g pipe (carpeta)) o manualmente.
+Pipe es una clase que debe implementar una interface y nos indican que método necesitamos.
+El decorador @pipe nos sirve para modificar el comportamiento de una clase. 
+Si lo hacemos manual hemos de importarlo en app.module.ts
+`filter.pipe.ts`
+export class FilterPipe implements PipeTransform{
+    //vamos a recibir una array de valores para recibir las ciudades y un argumento. Se van a recorrer todas las ciudades
+    //para aplicar un filtro
+    //indexOf busca dentro de un substring dentro del argumento si encuentra algo devuelve la posición sino -1
+    //dara un resultado mas el valor que tengamos en ese momento
+    transform(values: string[], arg: string): string[] {
+        //devolveremos los valores que recibimos si el argumento si es bacio o null se devuelve 
+        //o empiece a buscar si el argumento tiene más de 3 caracteres
+        if(!arg || arg?.length < 3) return values;
+        let result:string[] = [];
+        for(const value of values){
+            //igualamos lo que introduce el usuario introduce en el input como los elementos del array sea de minúscula a minúscula
+            if(value.toLowerCase().indexOf(arg.toLowerCase()) > -1){
+                result = [...result, value]
+            }
+        }
+        return result;
+    }
+}
+
  
 ## Code scaffolding
 

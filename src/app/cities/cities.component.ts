@@ -5,7 +5,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   template: `
    <ul>
       <li (click)="onCityClicked(city)" [ngClass]= "{'alert alert-info': city === selection}">
-          {{city}}
+          {{city | titlecase}}
       </li>
     </ul>
     <p>Counter: {{counterRender()}}</p>`,
