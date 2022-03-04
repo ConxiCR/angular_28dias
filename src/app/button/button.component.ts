@@ -2,7 +2,8 @@ import { Component, Input, OnInit, OnDestroy, OnChanges, SimpleChanges } from '@
 
 @Component({
   selector: 'app-button',
-  template: `<button [ngStyle]="{'background-color': color}">{{label}}</button>`,
+  template: `<button [ngStyle]="{'background-color': color}">{{label}}</button>
+            <p>Counter: {{counterRender()}}</p>`,
   styleUrls: ['./button.component.scss']
 })
 export class ButtonComponent implements OnInit, OnChanges, OnDestroy {
@@ -19,6 +20,10 @@ export class ButtonComponent implements OnInit, OnChanges, OnDestroy {
   }
   ngOnDestroy(): void {
     console.log('OnDestroy');
+  }
+  counterRender(): boolean{
+    console.log('Render Button');
+    return true;
   }
 
 

@@ -174,23 +174,21 @@ Que necesitamos: decorador @output que nos permite comunicarnos desdel hijo. Nes
 
                 </div>
         </form>
-
-
-       
-        
-
-
-
-
-
+### RET12 Mecanismo de detección de cambio Angular (Change Detection)
+https://www.youtube.com/watch?v=UTT90NU_a0A
+`Change detection:` mecanismo que tiene Angular para detectar cuando el modelo cambia renderizar la vista sobre esos cambios. Es el mecanismo que se encarga de tener actualizados los componentes de la web en todo momento.  Los cambios los producen los eventos del mouse, las llamadas http request, setInterval, setTimeOut. Hay dos estrategiass:
+        `Default` el se encarga de actualizar cuando el modelo cambia para actualizar la vista y viceversa ya que es two ways.` CheckAlways`
+        `OnPush`(bajo demanda) `CheckOnce`.
+. Creamos un componente nuevo "cities"
 
 
 
 
-
-
-
-
+`form-new-item.component.ts` para renderizar. Y lo colocamos en cualquier parte del html. Lo replicamos en todos los componentes hijos.
+counterRender(): boolean{
+    console.log('Render Form');
+    return true;
+  }
  
 ## Code scaffolding
 

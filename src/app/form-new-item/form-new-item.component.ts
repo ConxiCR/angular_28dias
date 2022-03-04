@@ -15,4 +15,8 @@ export class FormNewItemComponent {
     console.log('Item ->', item)
     this.newItemEvent.emit(item);
   }
+  counterRender(): boolean{
+    console.log('Render Form');
+    return true;
+  }
 }
