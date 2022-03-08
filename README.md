@@ -185,8 +185,8 @@ https://angular.io/api/core/ChangeDetectionStrategy
         `OnPush`(bajo demanda) `CheckOnce`.
 . Creamos un componente nuevo "cities"
 . Para saber que esta ocurriendo cuando se trabaja con componentes hijos todo funciona en forma de árbol. El ChangeDetection:
-        - en la pestaña de source en el inspector de código. Con ctrl + p buscamos el fichero vendor.js. Buscamos el método `tick()`. Es el encargado de determinar cuando Angular vuelve a repintar la vista. Encima del número de línea, botón derecho escogemos logpoint y escribimos 'Inside tick()' y veremos como actua Angular. Console y veremos dos Inside tick por los dos checks que hace Angular para verificar. Que sólo hace en modo desarrollo no en producción.
-
+        . En la pestaña de source en el inspector de código. Con ctrl + p buscamos el fichero vendor.js. Buscamos el método `tick()`. Es el encargado de determinar cuando Angular vuelve a repintar la vista. Encima del número de línea, botón derecho escogemos logpoint y escribimos 'Inside tick()' y veremos como actua Angular. Console y veremos dos `Inside tick` por los dos checks que hace Angular para verificar. Que sólo hace en modo desarrollo no en producción.
+![image](https://user-images.githubusercontent.com/67627523/157274190-f7648d36-14c3-4c47-9a52-42f7f26ab874.png)
 
 `form-new-item.component.ts` para renderizar. Y lo colocamos en cualquier parte del html. Lo replicamos en todos los componentes hijos.
 1. Hay que imprimirlo: <p>Count: {{counterRender()}}</p>
@@ -237,6 +237,7 @@ export class FilterPipe implements PipeTransform{
         return result;
     }
 }
+
 ### RET14 Formularios template-driven form Angular - video1
 https://www.youtube.com/watch?v=AYOQB6leTts&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=14
 https://github.com/domini-code/reto-angular-formularios
@@ -251,6 +252,9 @@ Dos enfoques para trabajar con formularios: Template-drive forms y Reactives for
 .¿Cómo asociamos nuestros campos? Enlace unidireccional es simple no tiene que cargar data(sólo se incorporaran datos por el usuario y enviarlos al APi) otra manera es cargar la data y enlazar con un model.
 #### Viene predefinido en Angular. Es un pipe de json
 <pre>{{contactForm | json}}</pre>
+![image](https://user-images.githubusercontent.com/67627523/157274675-05ee17dd-1585-40e4-8728-f592c16e0f47.png)
+
+
 `opción 1` - El usuario introduce data, almacenamos la data y la enviamos a la api. Una via de comunicación. Mediante el atributo "name".
 https://angular.io/api/forms/NgForm
 
@@ -275,7 +279,8 @@ También se puede validar el formulario desdel .ts en el submit. Tendriamos que 
                  onSubmit(values: any): void {
                         console.log('Form values', values);
                 } con el form
-
+![image](https://user-images.githubusercontent.com/67627523/157274933-46688c71-e5f1-48b6-bc94-d0af406add1a.png) La propiedad `value` nos da los valores introducidos en el formulario
+![image](https://user-images.githubusercontent.com/67627523/157275411-bebd0aae-c20e-4fa5-8306-46b9f5f9c8f5.png) La propiedad `valid` se puede comprovar si es igual a true seguimos sino no hacemos nada
 
 
 
