@@ -237,24 +237,44 @@ export class FilterPipe implements PipeTransform{
         return result;
     }
 }
-### RET14 Formularios template-driven form Angular
+### RET14 Formularios template-driven form Angular - video1
+https://www.youtube.com/watch?v=AYOQB6leTts&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=14
+https://github.com/domini-code/reto-angular-formularios
 
-Dos enfoques para trabajar con formularios: Template-drive forms y Reactives forms
+Dos enfoques para trabajar con formularios: Template-drive forms y Reactives forms.
 `Template-drive forms`(formulario de contactos sencillo, subscripcion de email, cosas sencillas sin campos anidados)
 . Creamos carpeta contact
 . Creamos formulario en .html
-. Maquetación de Angular con formularios ngFor
+. Maquetación de Angular con formularios ngForm. https://angular.io/api/forms/NgForm
+        Creación del `Template variable reference` para tener acceso a las variables de esa Directiva. En `contact.component.ts`. En el app.module tenermos que importar los formularios
+        <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
 .¿Cómo asociamos nuestros campos? Enlace unidireccional es simple no tiene que cargar data(sólo se incorporaran datos por el usuario y enviarlos al APi) otra manera es cargar la data y enlazar con un model.
-
-#### Viene predefinido en Angular
+#### Viene predefinido en Angular. Es un pipe de json
 <pre>{{contactForm | json}}</pre>
-`opción 1` - El usuario introduce data, almacenamos la data y la enviamos a la api. Una via de comunicación.
+`opción 1` - El usuario introduce data, almacenamos la data y la enviamos a la api. Una via de comunicación. Mediante el atributo "name".
+https://angular.io/api/forms/NgForm
+
 Se pueden pasar values o el contactForm
 <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
-`opcion 2` - si necesitamos cargar data en el formulario. Si necesitamos enviar data utilizamos el two-way data biding.
+`opcion 2` - si necesitamos cargar data en el formulario. Si necesitamos enviar data utilizamos el two-way data biding. `[(ngModel)]="model.name"` En lugar de utilizar directamente el ngModel utilizamos el banana on de box para hacer el two-way data binding. De esta manera enlazamos el html con el ts.
 
 
+Para trabajar con formularios template driven hacen falta  3 cosas 
+1) Darle nombre a nuestro formulario mediante template template reference  #myForm="ngForm" 
+2) (ngSubmit)="onSubmitForm(myForm.value); 
+3) cada campo del formulario debe de tener el atributo nombre y la directiva NgModel
 
+. Validaciones
+Se puede validar si se ha tocado un campo concreto, se haya introducido algún valor o sólo introduce el cursor y sale (onTouch). En el input #name="ngModel" en el <div [hidden]="name.valid || name.pristine" Sólo se muestra cuando el campo sea inválido o pristine cuando el usuario haya cambiado algo en la UI o se haya cambiado algo en la inteface.
+EL botón de enviar lo desabilitamos para que sólo sea válido si todo esta validado. En el button [disabled]="contactForm.invalid". No podrá hacer envios.
+También se puede validar el formulario desdel .ts en el submit. Tendriamos que recibir todo el formulario en lugar del valor.
+                
+                onSubmit(values: any): void {
+                        console.log('Form values', values);
+                } sólo valor
+                 onSubmit(values: any): void {
+                        console.log('Form values', values);
+                } con el form
 
 
 
