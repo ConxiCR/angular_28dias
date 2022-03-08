@@ -43,5 +43,8 @@ onCityClicked(city: string): void{
 onClear(): void{
   this.selection = '';
 }
+/*onSearch(): void{
+  console.log('onSearch')
+}*/
 
 }

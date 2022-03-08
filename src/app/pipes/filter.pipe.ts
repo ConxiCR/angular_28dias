@@ -18,7 +18,7 @@ export class FilterPipe implements PipeTransform{
         for(const value of values){
             //igualamos lo que introduce el usuario introduce en el input como los elementos del array sea de minúscula a minúscula
             if(value.toLowerCase().indexOf(arg.toLowerCase()) > -1){
-                result = [...result, value]
+                result = [...result, value];
             }
         }
         return result;

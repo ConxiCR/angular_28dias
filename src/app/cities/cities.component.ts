@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 
 @Component({
   selector: 'app-cities',
@@ -7,9 +7,10 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
       <li (click)="onCityClicked(city)" [ngClass]= "{'alert alert-info': city === selection}">
           {{city | titlecase}}
       </li>
-    </ul>
-    <p>Counter: {{counterRender()}}</p>`,
-  styleUrls: ['./cities.component.scss']
+    </ul>`,
+    
+  styleUrls: ['./cities.component.scss'],
+  //changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CitiesComponent {
   @Input() city!: string;
@@ -20,9 +21,9 @@ export class CitiesComponent {
     //emit output
     this.cityClickedEvent.emit(city);
   }
-  counterRender(): boolean{
+  /*counterRender(): boolean{
     console.log('Render Cities');
     return true;
-  }
+  }*/
 
 }

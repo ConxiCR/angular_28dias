@@ -99,7 +99,7 @@ Escuchar y responder a las acciones como click, movimiento del mouse, pulsar tec
         <button (click)="onClear()">Clear your selection</button>
     </div>
 
-### RET1O Decorador @Input 
+### RETO1O Decorador @Input 
 https://www.youtube.com/watch?v=0JyLTgqGjYo&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=10
 
 Un decorador se puede adjuntar a una clase metodo, propiedad. Modifica el comportamiento.
@@ -130,9 +130,9 @@ dos properties color y label
 ![image](https://user-images.githubusercontent.com/67627523/156032460-ec1d9eba-32f7-4c07-a01a-f7cd4aee7a9d.png)
 ![image](https://user-images.githubusercontent.com/67627523/156032598-39c0b982-45a6-4cb0-8f58-ede216f2839b.png)
 
-### RET11 Decorador @Output Angular
+### RETO11 Decorador @Output Angular
 https://www.youtube.com/watch?v=pycu2vAmER4&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=11
-Des del padre hasta el hijo
+El flujo de los datos es del hijo hasta el padre
 Añadimos bootstrap en el css.
 Que necesitamos: decorador @output que nos permite comunicarnos desdel hijo. Nesitamos un input con un label y un botón de añadir para poder añadir ciudades de manera dinámica en lugar de la array de donde las cargamos ahora.
 . Necesitamos un método addNewCity() que no va a devolver nada, pero va a recibir city's
@@ -174,18 +174,32 @@ Que necesitamos: decorador @output que nos permite comunicarnos desdel hijo. Nes
 
                 </div>
         </form>
-### RET12 Mecanismo de detección de cambio Angular (Change Detection)
+### RETO12 Mecanismo de detección de cambio Angular (Change Detection)
 https://www.youtube.com/watch?v=UTT90NU_a0A
+https://angular.io/api/core/ChangeDetectorRef#usage-notes
+https://angular.io/errors/NG0100
+https://angular.io/api/core/ChangeDetectionStrategy
+
 `Change detection:` mecanismo que tiene Angular para detectar cuando el modelo cambia renderizar la vista sobre esos cambios. Es el mecanismo que se encarga de tener actualizados los componentes de la web en todo momento.  Los cambios los producen los eventos del mouse, las llamadas http request, setInterval, setTimeOut. Hay dos estrategiass:
         `Default` el se encarga de actualizar cuando el modelo cambia para actualizar la vista y viceversa ya que es two ways.` CheckAlways`
         `OnPush`(bajo demanda) `CheckOnce`.
 . Creamos un componente nuevo "cities"
+. Para saber que esta ocurriendo cuando se trabaja con componentes hijos todo funciona en forma de árbol. El ChangeDetection:
+        - en la pestaña de source en el inspector de código. Con ctrl + p buscamos el fichero vendor.js. Buscamos el método `tick()`. Es el encargado de determinar cuando Angular vuelve a repintar la vista. Encima del número de línea, botón derecho escogemos logpoint y escribimos 'Inside tick()' y veremos como actua Angular. Console y veremos dos Inside tick por los dos checks que hace Angular para verificar. Que sólo hace en modo desarrollo no en producción.
+
+
 `form-new-item.component.ts` para renderizar. Y lo colocamos en cualquier parte del html. Lo replicamos en todos los componentes hijos.
-counterRender(): boolean{
+1. Hay que imprimirlo: <p>Count: {{counterRender()}}</p>
+2. Método: counterRender(): boolean{
     console.log('Render Form');
     return true;
   }
-### RET13 ¿Cómo crear un pipe personalizado en Angular?
+  cambiamos la estrategia. Nos encargamos de que determinados componentes cambien cuando las propiedades cambien, ya que no dependen de nada externo. Para eso utilizamos el onPush.
+  changeDetection: ChangeDetectionStrategy.OnPush en todos los componentes con @Input @Output, ya que sólo dependen de la data que les introducimos por el input.
+  
+### RETO13 ¿Cómo crear un pipe personalizado en Angular?
+https://www.youtube.com/watch?v=pAkG9KLrAxI&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=13
+https://angular.io/guide/pipes
 
 Pipe sirven para transformar data. Reciben un dato que pueden transformar. Angular tiene dos tipos de pipes, los que vienen por defecto y los custom pipes se adecuan a nuestras necesidades.
 Pueden ser puros o impuros. Los `puros` vienen por defecto. Angular transforma la data y hasta que esa data no vuelve a cambiar Angular no vuelve a computar o realizar esa transformación. Los `impuros` se ejecuta el ciclo de detección de cambios Angular volvera a transformar la data aunque la data no haya cambiado.
@@ -223,8 +237,30 @@ export class FilterPipe implements PipeTransform{
         return result;
     }
 }
+### RET14 Formularios template-driven form Angular
 
- 
+Dos enfoques para trabajar con formularios: Template-drive forms y Reactives forms
+`Template-drive forms`(formulario de contactos sencillo, subscripcion de email, cosas sencillas sin campos anidados)
+. Creamos carpeta contact
+. Creamos formulario en .html
+. Maquetación de Angular con formularios ngFor
+.¿Cómo asociamos nuestros campos? Enlace unidireccional es simple no tiene que cargar data(sólo se incorporaran datos por el usuario y enviarlos al APi) otra manera es cargar la data y enlazar con un model.
+
+#### Viene predefinido en Angular
+<pre>{{contactForm | json}}</pre>
+`opción 1` - El usuario introduce data, almacenamos la data y la enviamos a la api. Una via de comunicación.
+Se pueden pasar values o el contactForm
+<form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+`opcion 2` - si necesitamos cargar data en el formulario. Si necesitamos enviar data utilizamos el two-way data biding.
+
+
+
+
+
+
+
+
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.

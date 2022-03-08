@@ -40,9 +40,10 @@
         <hr>
         <div class="col-md-8">
             <ul>
-                <app-cities *ngFor="let city of (cities | filter:'criteria')"
+                <app-cities *ngFor="let city of (cities | filter: criteria)"
                  (cityClickedEvent)="onCityClicked($event)" [city]="city" [selection]="selection"></app-cities>
             </ul>
+            <!--<input type="text" (keypress)="onSearch()">-->
             <!--<ul>
                 <li *ngFor="let city of cities" (click)="onCityClicked(city)" [ngClass]= "{'alert alert-info': city === selection}">
                     {{city}}
@@ -50,11 +51,11 @@
               </ul>-->
         </div>
         <!--pipes by default-->
-        <p>{{'6/15/15, 9:03 AM' | date:'full'}}</p>
+        <!--<p>{{'6/15/15, 9:03 AM' | date:'full'}}</p>
         <p>My birthday is: {{'6/15/15, 9:03 AM' | date:'full' | uppercase}}</p>
         <p>{{'999' | currency}}</p>
         <p>{{'999' | currency: 'EUR'}}</p>
-        <p>{{'999' | currency: 'DOP'}}</p>
+        <p>{{'999' | currency: 'DOP'}}</p>-->
 
         <div class="col-md-4">
             <div *ngIf="selection">
@@ -64,4 +65,18 @@
             </div>
         </div>
     </div>
+</div>
+<hr>
+<div class="container">
+    <div class="row">
+        <div class="col-9">
+            <app-contact></app-contact>
+        </div>
+        <div class="col-3">
+
+        </div>
+    </div>
+
+
+
 </div>
