@@ -217,6 +217,8 @@ Mirar ISO 4217 donde hay todos los códigos para la transformación de monedas.
 Pipe es una clase que debe implementar una interface y nos indican que método necesitamos.
 El decorador @pipe nos sirve para modificar el comportamiento de una clase. 
 Si lo hacemos manual hemos de importarlo en app.module.ts
+`Interface` https://www.youtube.com/watch?v=CmE3okASUJo
+
 `filter.pipe.ts`
 export class FilterPipe implements PipeTransform{
     //vamos a recibir una array de valores para recibir las ciudades y un argumento. Se van a recorrer todas las ciudades
@@ -238,7 +240,7 @@ export class FilterPipe implements PipeTransform{
     }
 }
 
-### RET14 Formularios template-driven form Angular - video1
+### RET014 Formularios template-driven form Angular - video1
 https://www.youtube.com/watch?v=AYOQB6leTts&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=14
 https://github.com/domini-code/reto-angular-formularios
 
@@ -247,7 +249,7 @@ Dos enfoques para trabajar con formularios: Template-drive forms y Reactives for
 . Creamos carpeta contact
 . Creamos formulario en .html
 . Maquetación de Angular con formularios ngForm. https://angular.io/api/forms/NgForm
-        Creación del `Template variable reference` para tener acceso a las variables de esa Directiva. En `contact.component.ts`. En el app.module tenermos que importar los formularios
+        Creación del `Template variable reference` https://angular.io/api/forms/NgForm#template-variable-references para tener acceso a las variables de esa Directiva. En `contact.component.ts`. En el app.module tenermos que importar los formularios
         <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
 .¿Cómo asociamos nuestros campos? Enlace unidireccional es simple no tiene que cargar data(sólo se incorporaran datos por el usuario y enviarlos al APi) otra manera es cargar la data y enlazar con un model.
 #### Viene predefinido en Angular. Es un pipe de json
@@ -282,10 +284,47 @@ También se puede validar el formulario desdel .ts en el submit. Tendriamos que 
 ![image](https://user-images.githubusercontent.com/67627523/157274933-46688c71-e5f1-48b6-bc94-d0af406add1a.png) La propiedad `value` nos da los valores introducidos en el formulario
 ![image](https://user-images.githubusercontent.com/67627523/157275411-bebd0aae-c20e-4fa5-8306-46b9f5f9c8f5.png) La propiedad `valid` se puede comprovar si es igual a true seguimos sino no hacemos nada
 
+### RET14 Formularios template-driven form Angular - video2
+https://www.youtube.com/watch?v=epSVNMtG80I&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=15
+https://github.com/domini-code/reto-angular-formulariosSs&t=0s
 
+`Formularios Reactivos`https://www.youtube.com/watch?v=jJuE7-9T6Ss&t=0s
+Todo parte de una clase `ABSTRACTCONTROL` que tiene varias subcontrol `FormControl`con un input, `FormGroup`y el `FormArray`.
+`Reactives Forms Directives`(FormGroup, FormControl, FormControlNative, FormGroupName y FormArray)
+. Creamos un nuevo componente `contact-reactive`
+. Ponemos el componente en el app.component.html <app-contact-reactive></app-contact-reactive>
+. Importamos el modulo de formularios reactivos al app.module.ts `ReactiveFormsModule`
+. Copiamos el formulario de contact a contact-reactive. Se pueden combinar los dos tipos de formularios.
+. No necesitamos en ngModel ni la referencia para la validación.
+. Utilizamos la directiva formControlName="name"
+. Como gestionamos el formulario con el reactivo? En lugar de la variable de referencia utilizamos el [formGroup] + nombre del formulario.
+. Creamos método y propiedad.
+. `OPCIÓN ADICIONAL:` Cuando tenemos un sólo input podriamos trabajar con esta opción: trabajar con el FormControl. Podriamos ver cada vez que cambie el valor del input con un observable.
 
+. Creamos un método para iniciar el formulario. Que va a devolver un FormGroup. Declararemos las propiedades del formulario con el FormBuilder(creador de formularios). Para poder utilizarlo tenemos que hacer la importación al constructor. Podremos escoger entre(array, control y un group). El group es un método que espera un objeto a donde definir los campos.
+Los campos estan formados por el nombre del campo y argumentos. El 1r argumento puede ser null, vacio o definido. EL segundo las diferentes validaciones simples o en [] para pasar más de una. Pueden ser más de una. Como lo vamos a devolver `return`.
+        initForm(): FormGroup{
+                return this.fb.group({
+                        name: ['', [Validators.required, Validators.minLength(3)]], (mínimo de caracteres 3)
+                        checkAdult: ['', [Validators.required]],
+                        department: [''],
+                        comment: ['', [Validators.required]],
+                })
+        }
+. Igualamos la propiedad `contactForm` en el `ngOnInit` con resultado del método `initForm`. La propiedad tiene el modelo de datos.
+. Aplicamos el contactForm en el html.
+. Validaciones: 
+        campo name - directiva `ngIf`. Accedemos al formulario mediante el `contactForm.get` y como string el nombre del campo comprobamos si ha sido tocado, pero también tiene que ser invalido. Propiedad `errors` que sólo existe si hay errores porque puede ser null. Tiene que ser requerido.
+        <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['required']" class="alert alert-danger">
+        Otra validación es que sea tocada y que tenga más de 3 caracteres: `minlength tiene que ir en minusculas`
+        <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['minlength']" class="alert alert-danger">Name must be longer then 3 characters.</div>
+        -> Se puede hacer de forma dinámica por si el metodo cambiara `Name must be longer than{{contactForm.get('name')?.errors?.['minlength']?.requiredLength}}characters.`
 
-
+        Para indicarle data podemos utilizar el patchValue. p.e: 
+                        onPathValue(): void {
+                                this.contactForm.patchValue({ name: 'Hola'}); y declarlo en el ngOnInit
+                        }
+        
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
