@@ -10,14 +10,14 @@ export class AppComponent {
   //Add 'implements OnDestroy' to the class.
   
 
-  cities = ['Barcelona', 'Madrid', 'Lima']
+  /*cities = ['Barcelona', 'Madrid', 'Lima']
   //propiedad. No la estoy definiendo, sólo declarando
   name!: string;
   selection!: string;
   criteria!: '';
 
   title = 'angular_28Dias';
-  url='https://unsplash.com/photos/_bHzC5CSyYY?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink'
+  url='https://unsplash.com/photos/_bHzC5CSyYY?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink'*/
 
 //traerá los cambios anteriores y los nuevos
 /*ngOnChanges(changes: SimpleChanges): void {
@@ -33,7 +33,7 @@ ngOnInit(): void {
 ngOnDestroy(): void {
     console.log('Destroy');
 }*/
-addNewCity(city: string){
+/*addNewCity(city: string){
   this.cities.push(city);
 }
 onCityClicked(city: string): void{
@@ -42,7 +42,7 @@ onCityClicked(city: string): void{
 }
 onClear(): void{
   this.selection = '';
-}
+}*/
 /*onSearch(): void{
   console.log('onSearch')
 }*/

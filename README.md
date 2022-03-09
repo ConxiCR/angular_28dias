@@ -284,7 +284,7 @@ También se puede validar el formulario desdel .ts en el submit. Tendriamos que 
 ![image](https://user-images.githubusercontent.com/67627523/157274933-46688c71-e5f1-48b6-bc94-d0af406add1a.png) La propiedad `value` nos da los valores introducidos en el formulario
 ![image](https://user-images.githubusercontent.com/67627523/157275411-bebd0aae-c20e-4fa5-8306-46b9f5f9c8f5.png) La propiedad `valid` se puede comprovar si es igual a true seguimos sino no hacemos nada
 
-### RET14 Formularios template-driven form Angular - video2
+### RETO14 Formularios template-driven form Angular - video2
 https://www.youtube.com/watch?v=epSVNMtG80I&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=15
 https://github.com/domini-code/reto-angular-formulariosSs&t=0s
 
@@ -325,7 +325,61 @@ Los campos estan formados por el nombre del campo y argumentos. El 1r argumento 
                         onPathValue(): void {
                                 this.contactForm.patchValue({ name: 'Hola'}); y declarlo en el ngOnInit
                         }
-        
+
+### RET15 Configuración de rutas en Angular
+https://www.youtube.com/watch?v=kHDSrHXqe-Y&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=16
+La ruta es:
+* Encargada de la navegación de un componente a otro.
+* Pasar parámetros 
+* Redireccionar
+* Proteger rutas (guards)
+
+. Creamos un nuevo componente `home`
+. Creamos las rutas en el modulo `app-routing.module.ts`
+        const routes: Routes = [
+                - creamos una ruta especifica para cuando vaya al host el usuario. Redirección de ruta. Propiedad `pathMatch `calcula que tanto tiene que coincidir con la ruta para cumplirse o no. Angular evalua de arriba a abajo las rutas. Si no cumple la primera va a la siguiente y consecutivamente
+                {path: '', redirectTo: '/home', pathMatch: 'full'},
+                {path: 'contact-reactive', component: ContactReactiveComponent},
+                {path: 'contact-template', component: ContactComponent},
+                {path: 'home', component: HomeComponent},
+        ];
+. Llevar la directiva <router-outlet></router-outler> al componente principal.
+. El html del app.component.html llevarlo al `home.component.html`
+. Necesitamos enlaces para navegar más facil no tener que introducir las rutas desde la barra de direcciones.
+. Creamos un componente navbar y le indicamos que lo coloque en el app.module.ts `ng g c navbar -m app`
+Lo vamos a llamar desdel app.component.html
+. Incorporamos estilo bootstrap para el navbar https://getbootstrap.com/docs/5.1/components/navbar/
+Maquetamos el html indicando las rutas creadas. Para que nos lleve a las páginas indicadas.
+         <a class="nav-link" href="/contact-reactive">Reactivo</a>
+. Para que no recargue las páginas una y otra vez y la convierta en una `single-page` utilizamos el `routerLink` en lugar del href.
+. Clase `active` de bootstrap. Cuando esta en una ruta determinada cambia un poco los estilos. Cambiamos background para que se vea la diferencia.
+. Para saber que estamos en una determinada ruta  Angular tiene una clase `routerLinkActive` que es parte de la directiva `routerLink`. Sirve para indicarle que señale cuando la ruta este activa.
+. Para que no tenga varias opciones activas se puede hacer de dos formas:
+        1. [routerLinkActiveOptions]="{exact: true}" en la ruta home
+        <a class="nav-link active" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/home">Home</a>
+        2. En la ruta bacia indicarle /home.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.

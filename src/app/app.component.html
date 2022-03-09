@@ -28,7 +28,7 @@
     <!--<button (click)="onClear()">Clear your selection</button>-->
     <!--<app-button (click)="onClear()" [color]="'blue'" [label]="'Clear your selection'" [selection]="'selection'" ></app-button>
 </div>-->
-<div class="container">
+<!--<div class="container">
     <div class="row">
         <div class="col-md-6 my-3">
             <app-form-new-item (newItemEvent)="addNewCity($event)" [label]="'City'" [className]="'btn-info'">
@@ -43,19 +43,19 @@
                 <app-cities *ngFor="let city of (cities | filter: criteria)"
                  (cityClickedEvent)="onCityClicked($event)" [city]="city" [selection]="selection"></app-cities>
             </ul>
-            <!--<input type="text" (keypress)="onSearch()">-->
-            <!--<ul>
+            <input type="text" (keypress)="onSearch()">
+            <ul>
                 <li *ngFor="let city of cities" (click)="onCityClicked(city)" [ngClass]= "{'alert alert-info': city === selection}">
                     {{city}}
                 </li>
-              </ul>-->
-        </div>
+              </ul>
+        </div>-->
         <!--pipes by default-->
         <!--<p>{{'6/15/15, 9:03 AM' | date:'full'}}</p>
         <p>My birthday is: {{'6/15/15, 9:03 AM' | date:'full' | uppercase}}</p>
         <p>{{'999' | currency}}</p>
         <p>{{'999' | currency: 'EUR'}}</p>
-        <p>{{'999' | currency: 'DOP'}}</p>-->
+        <p>{{'999' | currency: 'DOP'}}</p>
 
         <div class="col-md-4">
             <div *ngIf="selection">
@@ -66,14 +66,16 @@
         </div>
     </div>
 </div>
-<hr>
+<hr>-->
+<app-navbar></app-navbar>
 <div class="container">
     <div class="row">
-        <div class="col-6">
+        <div class="col-12">
             <!--<app-contact></app-contact>-->
+            <router-outlet></router-outlet>
         </div>
-        <div class="col-6">
-            <app-contact-reactive></app-contact-reactive>
-        </div>
+        <!--<div class="col-6">
+           <app-contact-reactive></app-contact-reactive>
+        </div>-->
     </div>
 </div>
