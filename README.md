@@ -281,8 +281,8 @@ También se puede validar el formulario desdel .ts en el submit. Tendriamos que 
                  onSubmit(values: any): void {
                         console.log('Form values', values);
                 } con el form
-![image](https://user-images.githubusercontent.com/67627523/157274933-46688c71-e5f1-48b6-bc94-d0af406add1a.png) La propiedad `value` nos da los valores introducidos en el formulario
-![image](https://user-images.githubusercontent.com/67627523/157275411-bebd0aae-c20e-4fa5-8306-46b9f5f9c8f5.png) La propiedad `valid` se puede comprovar si es igual a true seguimos sino no hacemos nada
+      ![image](https://user-images.githubusercontent.com/67627523/157274933-46688c71-e5f1-48b6-bc94-d0af406add1a.png) La propiedad `value` nos da los valores introducidos en el formulario
+      ![image](https://user-images.githubusercontent.com/67627523/157275411-bebd0aae-c20e-4fa5-8306-46b9f5f9c8f5.png) La propiedad `valid` se puede comprovar si es igual a true seguimos sino no hacemos nada
 
 ### RETO14 Formularios template-driven form Angular - video2
 https://www.youtube.com/watch?v=epSVNMtG80I&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=15
@@ -300,7 +300,7 @@ Todo parte de una clase `ABSTRACTCONTROL` que tiene varias subcontrol `FormContr
 . Como gestionamos el formulario con el reactivo? En lugar de la variable de referencia utilizamos el [formGroup] + nombre del formulario.
 . Creamos método y propiedad.
 . `OPCIÓN ADICIONAL:` Cuando tenemos un sólo input podriamos trabajar con esta opción: trabajar con el FormControl. Podriamos ver cada vez que cambie el valor del input con un observable.
-  ![image](https://user-images.githubusercontent.com/67627523/157436144-b75a42aa-7e36-476a-a783-c362b590ce19.png)
+          ![image](https://user-images.githubusercontent.com/67627523/157436144-b75a42aa-7e36-476a-a783-c362b590ce19.png)
 
 . Creamos un método para iniciar el formulario. Que va a devolver un FormGroup. Declararemos las propiedades del formulario con el FormBuilder(creador de formularios). Para poder utilizarlo tenemos que hacer la importación al constructor. Podremos escoger entre(array, control y un group). El group es un método que espera un objeto a donde definir los campos.
 Los campos estan formados por el nombre del campo y argumentos. El 1r argumento puede ser null, vacio o definido. EL segundo las diferentes validaciones simples o en [] para pasar más de una. Pueden ser más de una. Como lo vamos a devolver `return`.
@@ -323,8 +323,9 @@ Los campos estan formados por el nombre del campo y argumentos. El 1r argumento 
 
         Para indicarle data podemos utilizar el patchValue. p.e: 
                         onPathValue(): void {
-                                this.contactForm.patchValue({ name: 'Hola'}); y declarlo en el ngOnInit
+                                this.contactForm.patchValue({ name: 'Hola'}); y declararlo en el ngOnInit
                         }
+      ![image](https://user-images.githubusercontent.com/67627523/157476145-9378c62d-0c53-462d-8f0b-52bb4d02273c.png)
 
 ### RET15 Configuración de rutas en Angular
 https://www.youtube.com/watch?v=kHDSrHXqe-Y&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=16
@@ -357,7 +358,7 @@ Maquetamos el html indicando las rutas creadas. Para que nos lleve a las página
 . Para que no tenga varias opciones activas se puede hacer de dos formas:
         1. [routerLinkActiveOptions]="{exact: true}" en la ruta home
         <a class="nav-link active" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/home">Home</a>
-        2. En la ruta bacia indicarle /home.
+        2. En la ruta vacia indicarle /home.
 
 
 
