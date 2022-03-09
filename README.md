@@ -300,6 +300,7 @@ Todo parte de una clase `ABSTRACTCONTROL` que tiene varias subcontrol `FormContr
 . Como gestionamos el formulario con el reactivo? En lugar de la variable de referencia utilizamos el [formGroup] + nombre del formulario.
 . Creamos método y propiedad.
 . `OPCIÓN ADICIONAL:` Cuando tenemos un sólo input podriamos trabajar con esta opción: trabajar con el FormControl. Podriamos ver cada vez que cambie el valor del input con un observable.
+  ![image](https://user-images.githubusercontent.com/67627523/157436144-b75a42aa-7e36-476a-a783-c362b590ce19.png)
 
 . Creamos un método para iniciar el formulario. Que va a devolver un FormGroup. Declararemos las propiedades del formulario con el FormBuilder(creador de formularios). Para poder utilizarlo tenemos que hacer la importación al constructor. Podremos escoger entre(array, control y un group). El group es un método que espera un objeto a donde definir los campos.
 Los campos estan formados por el nombre del campo y argumentos. El 1r argumento puede ser null, vacio o definido. EL segundo las diferentes validaciones simples o en [] para pasar más de una. Pueden ser más de una. Como lo vamos a devolver `return`.
