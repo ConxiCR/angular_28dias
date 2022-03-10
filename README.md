@@ -366,7 +366,7 @@ Maquetamos el html indicando las rutas creadas. Para que nos lleve a las página
         1. [routerLinkActiveOptions]="{exact: true}" en la ruta home
         <a class="nav-link active" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/home">Home</a>
         2. En la ruta bacia indicarle /home.
-### RET16 Rutas hijas, párametros y QueryParams en Angular
+### RETO16 Rutas hijas, párametros y QueryParams en Angular
 https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=18
 
 . Página 404 Angular APP 
@@ -463,6 +463,42 @@ https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
                         
 ![image](https://user-images.githubusercontent.com/67627523/157638868-9677ecfb-4490-485c-8a34-24bb0cead115.png)
 
+### RET17 Guardianes en Angular (Guards)
+https://www.youtube.com/watch?v=Fhq20zubpPc&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=18
+
+Ayudan a proteger una determinada ruta o bien para que no entren sino se esta logado. Otra opción es si un usuario quiere salir de una ruta y hay datos por guardar. Hay que hacer las comprobaciones. Se pueden tener diferentes interfaces de guards.
+
+- Creamos un guard ng g guard permissions
+nos pregunta que intefaces queremos implementar. Por defecto esta marcada ()CanActivate
+- Creamos otro guard para implementar otra interfaces y quitar el modo test
+                ng g guard withoutSave --skip-tests=true
+                ? Which interfaces would you like to implement? (Press <space> to select, <a> to toggle all, <i> to invert selection, and <enter> to proceed)
+                ( ) CanActivate
+                ( ) CanActivateChild
+                >(*) CanDeactivate
+                ( ) CanLoad
+. Permissions.guards.ts
+        `CanActivate`
+        Si puede usar esa ruta.
+        ha creado una clase que implementa una inteface que permite al usuario acceder a una determinada ruta. Estructura:
+        export class PermissionsGuard implements CanActivate {
+                canActivate(
+                route: ActivatedRouteSnapshot,
+                state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+                return true;
+                }
+                
+        }
+        Como en nuestro ejemplo no tenemos sistema de log in quitaremos del método CanActive el route y el state. Crearemos un método para simular si un usuario esta logado o no. De tipo boleano que nos devolverá false para que salte la alerta.
+        Le decimos al CanActive, si nuestro método `hasUser` devuelve true y de lo contrario se podria redireccionar al login. De momento, en pantalla se imprime un alert.
+        Implementamos en el fichero de rutas app.routing.module.ts.
+        Hay que proteger la URL de usuarios. Se puede utilizar más de un guard que aplique para una ruta. Se verian afectadas las hijas también.
+                {path: 'users', component: UserComponent, canActivate:[PermissionsGuard],
+
+        `CanDesactivate`
+        Si puede salir de esa ruta.
+        El usuario esta en un formulario, intenta salir sin guardar los cambios se le avisa que tiene que hacerlo.
+        En este caso comprobamos el método, si esta logado devuelve true y si no lo esta se utiliza el `config` de JS como un alerm. Si devuelve true, el usuario continuo sino no.
 
 
 
