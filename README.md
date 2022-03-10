@@ -463,7 +463,7 @@ https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
                         
 ![image](https://user-images.githubusercontent.com/67627523/157638868-9677ecfb-4490-485c-8a34-24bb0cead115.png)
 
-### RET17 Guardianes en Angular (Guards)
+### RETO17 Guardianes en Angular (Guards)
 https://www.youtube.com/watch?v=Fhq20zubpPc&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=18
 
 Ayudan a proteger una determinada ruta o bien para que no entren sino se esta logado. Otra opción es si un usuario quiere salir de una ruta y hay datos por guardar. Hay que hacer las comprobaciones. Se pueden tener diferentes interfaces de guards.
@@ -506,8 +506,58 @@ nos pregunta que intefaces queremos implementar. Por defecto esta marcada ()CanA
   
   ![image](https://user-images.githubusercontent.com/67627523/157655468-1ce365f4-74cf-4af4-826f-96641058085a.png)
 
+### RET18 ¿Para sirve un Resolver en Angular? 
+https://www.youtube.com/watch?v=InZ9GZSTVX4&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=19
 
+Interface que las clases pueden implementar para ser un proveedor de datos.
+`Qué es Resolver? `
+Es el mecanismo que se encarga en Angular de que cuando nosostros lleguemos a un determinado componente o una vista ya tengamos unos datos listos para renderizar y el componente no inicia su ciclo de vida hasta que la data no esta lista.
+Se debe usar con el router para resolver datos durante la navegación. 
+Se debe implementar un método resolve() que se invoca cuando comienza la navegación. 
+El router espera a que se resuelvan los datos antes de que finalmente se active la ruta.
 
+- Creamos una carpeta `resolver` y un fichero `data.resolver.service.ts`
+ Lo hacemos manual pero se puede hacer con la Cli.
+ Estructura: una clase DataResolverService que implementa un resolve(interface) que viene desde el Angular router. Cuando hay una petición a una API con un json muy extenso o no hay garantias que responda en el tiempo necesario se hace un resolve para que devuelva esa data.
+
+ - Creamos el método resolve que devuelve un observable.
+        Lo que va a devolver con of que convierte la array de la const en un observable.
+        import { Injectable } from "@angular/core";
+        import { Resolve } from "@angular/router";
+        import { Observable, of } from "rxjs";
+
+        const departments = [ 'Marketing', 'Sales', 'Other' ]
+        @Injectable({ providedIn: 'root'})
+
+        export class DataResolverService implements Resolve<any>{
+
+                resolve(): Observable<any>{
+
+                        //TODO: CALL SERVICE
+                        return of(departments);
+                }
+        }
+- Implementamos el resolve.
+Hay que ir a la ruta que lo queremos aplicar en app.routing.module.ts.
+La ruta que vamos a aplicar es la de contact-reactive. Se utiliza la propiedad resolve que espera un objeto.
+        {path: 'contact-reactive', component: ContactReactiveComponent, 
+          canDeactivate:[WithoutSaveGuard],
+          resolve: {departments: DataResolverService}},
+
+¿Cómo tenemos esa data cuando llegamos al componente?
+        modificamos el componente que queremos la data `contact-reactive.component.ts`
+        this.route.snapshot.data['departments'] la propiedad snapshot tiene otra propiedad data que es a donde se solicita nuestra data
+        
+        departments: string[] = [];
+
+        ngOnInit(): void {
+        this.departments = this.route.snapshot.data['departments']
+        En `contact-reactive.component.html` podemos comprobar que la data esta llegando.
+        <pre>{{departments}}</pre>
+
+        Modificamos el select hardcodeado para obtener los datos de manera dinámica. Podemos incorporar o anular departamentos(data) del resolve.
+        <select>
+        <option *ngFor="let department of departments" [value]="department">{{department}}</option>
 
 
 

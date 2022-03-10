@@ -1,4 +1,4 @@
-
+<pre>{{departments}}</pre>
 <h1>Contact form {{name}}</h1>
 <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
     <div class="mb-4">
@@ -18,9 +18,10 @@
         <label for="department" class="form-label">Department</label>
         <select name="department" id="department" class="form-select form-select-sm" formControlName="department" >
             <option selected>Open this select menu</option>
-            <option value="marketing">Marketing</option>
+            <option *ngFor="let department of departments" [value]="department">{{department}}</option>
+            <!--<option value="marketing">Marketing</option>
             <option value="sales">Sales</option>
-            <option value="other">Other</option>
+            <option value="other">Other</option>-->
         </select>
     </div>
     <div class="mb-4">
