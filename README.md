@@ -477,28 +477,35 @@ nos pregunta que intefaces queremos implementar. Por defecto esta marcada ()CanA
                 ( ) CanActivateChild
                 >(*) CanDeactivate
                 ( ) CanLoad
+  
 . Permissions.guards.ts
         `CanActivate`
         Si puede usar esa ruta.
-        ha creado una clase que implementa una inteface que permite al usuario acceder a una determinada ruta. Estructura:
+        Ha creado una clase que implementa una inteface que permite al usuario acceder a una determinada ruta. Estructura:
         export class PermissionsGuard implements CanActivate {
                 canActivate(
                 route: ActivatedRouteSnapshot,
                 state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
                 return true;
                 }
-                
-        }
-        Como en nuestro ejemplo no tenemos sistema de log in quitaremos del método CanActive el route y el state. Crearemos un método para simular si un usuario esta logado o no. De tipo boleano que nos devolverá false para que salte la alerta.
-        Le decimos al CanActive, si nuestro método `hasUser` devuelve true y de lo contrario se podria redireccionar al login. De momento, en pantalla se imprime un alert.
+           }
+        Como en nuestro ejemplo no tenemos sistema de log in quitaremos del método CanActive el route y el state. Crearemos un método para simular si un usuario esta           logado o no. De tipo boleano que nos devolverá false para que salte la alerta.
+        Le decimos al CanActive, si nuestro método `hasUser` devuelve true y de lo contrario se podria redireccionar al login. De momento, en pantalla se imprime un           alert.
         Implementamos en el fichero de rutas app.routing.module.ts.
         Hay que proteger la URL de usuarios. Se puede utilizar más de un guard que aplique para una ruta. Se verian afectadas las hijas también.
+  
                 {path: 'users', component: UserComponent, canActivate:[PermissionsGuard],
+  
+![image](https://user-images.githubusercontent.com/67627523/157655605-75598a2a-a381-4dcf-be2c-a317dfad826c.png)
 
+  . withoutSave.guards.ts
         `CanDesactivate`
         Si puede salir de esa ruta.
         El usuario esta en un formulario, intenta salir sin guardar los cambios se le avisa que tiene que hacerlo.
-        En este caso comprobamos el método, si esta logado devuelve true y si no lo esta se utiliza el `config` de JS como un alerm. Si devuelve true, el usuario continuo sino no.
+        En este caso comprobamos el método, si esta logado devuelve true y si no lo esta se utiliza el `config` de JS como un alerm. Si devuelve true, el usuario               continuo sino no.
+  
+  ![image](https://user-images.githubusercontent.com/67627523/157655468-1ce365f4-74cf-4af4-826f-96641058085a.png)
+
 
 
 
