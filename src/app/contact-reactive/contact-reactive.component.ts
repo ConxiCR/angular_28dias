@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-contact-reactive',
@@ -9,10 +10,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class ContactReactiveComponent implements OnInit {
   //propiedad
   contactForm!: FormGroup;
+  name!: string;
  
-  constructor( private readonly fb: FormBuilder ) { }
+  constructor( private readonly fb: FormBuilder ,
+                private readonly route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(
+      (params: Params) => {
+        this.name = params['name'];
+      }
+    )
     //igualamos la propiedad al método
     this.contactForm = this.initForm();
   }

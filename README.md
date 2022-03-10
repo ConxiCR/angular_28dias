@@ -326,7 +326,7 @@ Los campos estan formados por el nombre del campo y argumentos. El 1r argumento 
                                 this.contactForm.patchValue({ name: 'Hola'}); y declarlo en el ngOnInit
                         }
 
-### RET15 Configuración de rutas en Angular
+### RETO15 Configuración de rutas en Angular
 https://www.youtube.com/watch?v=kHDSrHXqe-Y&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=16
 La ruta es:
 * Encargada de la navegación de un componente a otro.
@@ -358,9 +358,90 @@ Maquetamos el html indicando las rutas creadas. Para que nos lleve a las página
         1. [routerLinkActiveOptions]="{exact: true}" en la ruta home
         <a class="nav-link active" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/home">Home</a>
         2. En la ruta bacia indicarle /home.
+### RET16 Rutas hijas, párametros y QueryParams en Angular
+https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=18
+
+. Página 404 Angular APP - creamos un nuevo componente `ng g c Pagenotfound -m app`
+        usar ruta wildcard https://angular.io/api/router/Route#wild-cards
+        {path: '**', component: PagenotfoundComponent} creamos una ruta para que nos redirija a una página 404 que podemos maquetar. Ejemplos: https://freefrontend.com/html-css-404-page-templates/
+. QueryParams Angular rutas 
+
+. Params Angular rutas 
+        En `navbar.component.ts`
+        1. injectamos la clase router
+        constructor( private readonly router: Router) { }
+        2. Creamos un método que podemos acceder a la instancia del router y al método `navigate`, al que le pasamos una url y 2o parámetro una queryParams a donde pasaremos un objeto.
+        goToReactive(): void{
+                this.router.navigate(['contact-reactive'], {queryParams: {name: 'Hola Mundo'}});
+        }
+        En `navbar.component.html`
+        Replicamos el enlace de Reactive para utilizar una manera diferente al `routerLink`
+        <a class="nav-link" routerLinkActive="active" (click)="goToReactive()">Reactive</a>
+        En la barra de direcciones del buscador aparece: http://localhost:4200/contact-reactive?name=Hola_Mundo
+        Como lo recuperamos? 
+        En el componente contact-reactive.component.ts creo una propiedad "name" a donde se va a almacenar el valor que se pasa por la URL. Utilizamos una directiva `ActiveRoute`
+        `name!`: string;
+        constructor( private readonly fb: FormBuilder ,
+                private readonly `route`: `ActivatedRoute`) { }
+
+        ngOnInit(): void {
+                accedo a la propiedad route y tenemos queryParams que es un observable emitiendo varias veces, nos va a devolver todos los params que necesitamos leer la propiedad name creada en el componente navbar. Este tipo podemos importarlo en el html.
+                this.`route`.`queryParams`.subscribe((params: Params) => {
+                        this.`name` = params['name'];(este name viene de navbar)
+                })
+        }
+        Interpolamos el nombre. Si cambiamos la data en el buscador cambiaré en el html. <h1>Contact form {{name}}</h1>
 
 
 
+        . Podemos pasar parametros además de queryParams en la ruta
+                necesitamos pasar un ID en el contact-template
+                vamos al `navbar.component.ts` y creamos un método. Utilizamos el método `navigate` al que le pasamos una ruta y el id 
+                goToTemplate(): void{
+                        this.router.navigate(['contact-template', `'580'`]);
+                }
+                vamos al `navbar.component.html` y en lugar de utilizar el routerLink utilizamos el (click). Cuando el usuario haga click vaya al método `goToTemplate`.
+                AL mirar en el navegador nos dará error, ya que hemos creado una ruta nueva.
+                ¿Cómo convertirla en dinámica? En `app.routing.module.ts` le indicamos a la ruta determinada que habrá un valor que será dinámico:
+                {path: 'contact-template`/:id`', component: ContactComponent},
+                Ahora sí reconoce la ruta. ¿Cómo recuperamos el id desde la URL?
+                En el template, `contact.component.ts` creamos un id: string;
+                Injectamos la interface:
+                constructor(private readonly route: ActivatedRoute) { }
+                        Accedemos al route params
+                        ngOnInit(): void {
+                                this.route.params.subscribe((params: Params) => {
+                                this.id = params[`'id'`];})(es la propiedad definida en la ruta)
+                        }
+                En el contact.component.html interpolamos el id <h1>Contact form - UserId{{id}}</h1>
+                Ya podemos recoger el valor del id venga de donde venga.
+
+
+
+. Angular rutas hijas 
+        - Creamos tres nuevos componentes dentro de la carpeta Users(list, details y user).
+        - Creamos las rutas en app.routin.module.ts
+                {path: 'users', component: UserComponent, 
+                        children: [
+                        {path: 'list', component: ListComponent},
+                        {path: 'details', component: DetailsComponent },
+                        ]},
+        - En el navbar.component.html hemos de crear la ruta:
+                <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" routerLink="/users">Users</a>
+                </li>
+        - En user.component.html creamos la estructura para ir a list y details. Utilizando el routerLink para crear un enlace con la rutas de las página. Para a ver el contenido de las páginas hemos de utilizar la directiva <router-outlet></router-outlet> para pintar los diferentes componentes.
+                        <div class="container">
+                                <div class="row">
+                                        <div class="col-6">
+                                        <a routerLink="list">Users List</a>
+                                        </div>
+                                        <div class="col-6">
+                                        <a routerLink="details">Details</a> 
+                                        </div>
+                                </div>
+                        </div>
+                        <router-outlet></router-outlet>
 
 
 

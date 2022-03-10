@@ -13,6 +13,10 @@ import { ContactComponent } from './contact/contact.component';
 import { ContactReactiveComponent } from './contact-reactive/contact-reactive.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
+import { UserComponent } from './users/user/user.component';
+import { DetailsComponent } from './users/details/details.component';
+import { ListComponent } from './users/list/list.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +29,10 @@ import { NavbarComponent } from './navbar/navbar.component';
     ContactReactiveComponent,
     HomeComponent,
     NavbarComponent,
+    PagenotfoundComponent,
+    UserComponent,
+    DetailsComponent,
+    ListComponent,
   ],
   imports: [
     BrowserModule,
