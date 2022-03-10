@@ -205,11 +205,12 @@ Pipe sirven para transformar data. Reciben un dato que pueden transformar. Angul
 Pueden ser puros o impuros. Los `puros` vienen por defecto. Angular transforma la data y hasta que esa data no vuelve a cambiar Angular no vuelve a computar o realizar esa transformación. Los `impuros` se ejecuta el ciclo de detección de cambios Angular volvera a transformar la data aunque la data no haya cambiado.
 
 Los `pipes por defecto que tiene Angular` hay una lista y se pueden combinar varios pipes.
-        <p>{{'6/15/15, 9:03 AM' | date:'full'}}</p>
-        <p>My birthday is: {{'6/15/15, 9:03 AM' | date:'full' | uppercase}}</p>
-        <p>{{'999' | currency}}</p>
-        <p>{{'999' | currency: 'EUR'}}</p>
-        <p>{{'999' | currency: 'DOP'}}</p>
+
+                    <p>{{'6/15/15, 9:03 AM' | date:'full'}}</p>
+                    <p>My birthday is: {{'6/15/15, 9:03 AM' | date:'full' | uppercase}}</p>
+                    <p>{{'999' | currency}}</p>
+                    <p>{{'999' | currency: 'EUR'}}</p>
+                    <p>{{'999' | currency: 'DOP'}}</p>
 Mirar ISO 4217 donde hay todos los códigos para la transformación de monedas.
 
 `pipes customizados`
@@ -221,6 +222,7 @@ Si lo hacemos manual hemos de importarlo en app.module.ts
 
 `filter.pipe.ts`
 export class FilterPipe implements PipeTransform{
+
     //vamos a recibir una array de valores para recibir las ciudades y un argumento. Se van a recorrer todas las ciudades
     //para aplicar un filtro
     //indexOf busca dentro de un substring dentro del argumento si encuentra algo devuelve la posición sino -1
@@ -246,12 +248,13 @@ https://github.com/domini-code/reto-angular-formularios
 
 Dos enfoques para trabajar con formularios: Template-drive forms y Reactives forms.
 `Template-drive forms`(formulario de contactos sencillo, subscripcion de email, cosas sencillas sin campos anidados)
-. Creamos carpeta contact
-. Creamos formulario en .html
-. Maquetación de Angular con formularios ngForm. https://angular.io/api/forms/NgForm
-        Creación del `Template variable reference` https://angular.io/api/forms/NgForm#template-variable-references para tener acceso a las variables de esa Directiva. En `contact.component.ts`. En el app.module tenermos que importar los formularios
-        <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
-.¿Cómo asociamos nuestros campos? Enlace unidireccional es simple no tiene que cargar data(sólo se incorporaran datos por el usuario y enviarlos al APi) otra manera es cargar la data y enlazar con un model.
+
+  . Creamos carpeta contact
+  . Creamos formulario en .html
+  . Maquetación de Angular con formularios ngForm. https://angular.io/api/forms/NgForm
+          Creación del `Template variable reference` https://angular.io/api/forms/NgForm#template-variable-references para tener acceso a las variables de esa              Directiva. En `contact.component.ts`. En el app.module tenermos que importar los formularios
+          <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+  .¿Cómo asociamos nuestros campos? Enlace unidireccional es simple no tiene que cargar data(sólo se incorporaran datos por el usuario y enviarlos al APi) otra manera      es cargar la data y enlazar con un model.
 #### Viene predefinido en Angular. Es un pipe de json
 <pre>{{contactForm | json}}</pre>
 ![image](https://user-images.githubusercontent.com/67627523/157274675-05ee17dd-1585-40e4-8728-f592c16e0f47.png)
@@ -262,13 +265,15 @@ https://angular.io/api/forms/NgForm
 
 Se pueden pasar values o el contactForm
 <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
+
 `opcion 2` - si necesitamos cargar data en el formulario. Si necesitamos enviar data utilizamos el two-way data biding. `[(ngModel)]="model.name"` En lugar de utilizar directamente el ngModel utilizamos el banana on de box para hacer el two-way data binding. De esta manera enlazamos el html con el ts.
 
 
-Para trabajar con formularios template driven hacen falta  3 cosas 
-1) Darle nombre a nuestro formulario mediante template template reference  #myForm="ngForm" 
-2) (ngSubmit)="onSubmitForm(myForm.value); 
-3) cada campo del formulario debe de tener el atributo nombre y la directiva NgModel
+Para trabajar con formularios template driven hacen falta 3 cosas:
+
+  1) Darle nombre a nuestro formulario mediante template template reference  #myForm="ngForm" 
+  2) (ngSubmit)="onSubmitForm(myForm.value); 
+  3) cada campo del formulario debe de tener el atributo nombre y la directiva NgModel
 
 . Validaciones
 Se puede validar si se ha tocado un campo concreto, se haya introducido algún valor o sólo introduce el cursor y sale (onTouch). En el input #name="ngModel" en el <div [hidden]="name.valid || name.pristine" Sólo se muestra cuando el campo sea inválido o pristine cuando el usuario haya cambiado algo en la UI o se haya cambiado algo en la inteface.
@@ -281,8 +286,9 @@ También se puede validar el formulario desdel .ts en el submit. Tendriamos que 
                  onSubmit(values: any): void {
                         console.log('Form values', values);
                 } con el form
-      ![image](https://user-images.githubusercontent.com/67627523/157274933-46688c71-e5f1-48b6-bc94-d0af406add1a.png) La propiedad `value` nos da los valores introducidos en el formulario
-      ![image](https://user-images.githubusercontent.com/67627523/157275411-bebd0aae-c20e-4fa5-8306-46b9f5f9c8f5.png) La propiedad `valid` se puede comprovar si es igual a true seguimos sino no hacemos nada
+                
+![image](https://user-images.githubusercontent.com/67627523/157274933-46688c71-e5f1-48b6-bc94-d0af406add1a.png) La propiedad `value` nos da los valores introducidos en el formulario
+![image](https://user-images.githubusercontent.com/67627523/157275411-bebd0aae-c20e-4fa5-8306-46b9f5f9c8f5.png) La propiedad `valid` se puede comprovar si es igual a true seguimos sino no hacemos nada
 
 ### RETO14 Formularios template-driven form Angular - video2
 https://www.youtube.com/watch?v=epSVNMtG80I&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=15
@@ -363,16 +369,21 @@ Maquetamos el html indicando las rutas creadas. Para que nos lleve a las página
 ### RET16 Rutas hijas, párametros y QueryParams en Angular
 https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=18
 
-. Página 404 Angular APP - creamos un nuevo componente `ng g c Pagenotfound -m app`
+. Página 404 Angular APP 
+
+      - creamos un nuevo componente `ng g c Pagenotfound -m app`
         usar ruta wildcard https://angular.io/api/router/Route#wild-cards
-        {path: '**', component: PagenotfoundComponent} creamos una ruta para que nos redirija a una página 404 que podemos maquetar. Ejemplos: https://freefrontend.com/html-css-404-page-templates/
+        {path: '**', component: PagenotfoundComponent} creamos una ruta para que nos redirija a una página 404 que podemos maquetar. Ejemplo:
+        
+        https://freefrontend.com/html-css-404-page-templates/
+        
 . QueryParams Angular rutas 
 
-. Params Angular rutas 
-        En `navbar.component.ts`
+        En `navbar.component.ts`:
+        
         1. injectamos la clase router
         constructor( private readonly router: Router) { }
-        2. Creamos un método que podemos acceder a la instancia del router y al método `navigate`, al que le pasamos una url y 2o parámetro una queryParams a donde pasaremos un objeto.
+        2. Creamos un método que podemos acceder a la instancia del router y al método `navigate`, al que le pasamos una url y 2o parámetro una queryParams a donde                 pasaremos un objeto.
         goToReactive(): void{
                 this.router.navigate(['contact-reactive'], {queryParams: {name: 'Hola Mundo'}});
         }
@@ -381,23 +392,25 @@ https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
         <a class="nav-link" routerLinkActive="active" (click)="goToReactive()">Reactive</a>
         En la barra de direcciones del buscador aparece: http://localhost:4200/contact-reactive?name=Hola_Mundo
         Como lo recuperamos? 
-        En el componente contact-reactive.component.ts creo una propiedad "name" a donde se va a almacenar el valor que se pasa por la URL. Utilizamos una directiva `ActiveRoute`
+        En el componente contact-reactive.component.ts creo una propiedad "name" a donde se va a almacenar el valor que se pasa por la URL. Utilizamos una directiva              `ActiveRoute`
         `name!`: string;
         constructor( private readonly fb: FormBuilder ,
                 private readonly `route`: `ActivatedRoute`) { }
 
         ngOnInit(): void {
-                accedo a la propiedad route y tenemos queryParams que es un observable emitiendo varias veces, nos va a devolver todos los params que necesitamos leer la propiedad name creada en el componente navbar. Este tipo podemos importarlo en el html.
+                accedo a la propiedad route y tenemos queryParams que es un observable emitiendo varias veces, nos va a devolver todos los params que necesitamos leer la                   propiedad name creada en el componente navbar. Este tipo podemos importarlo en el html.
                 this.`route`.`queryParams`.subscribe((params: Params) => {
                         this.`name` = params['name'];(este name viene de navbar)
                 })
         }
         Interpolamos el nombre. Si cambiamos la data en el buscador cambiaré en el html. <h1>Contact form {{name}}</h1>
         2. En la ruta vacia indicarle /home.
-
-
-
-        . Podemos pasar parametros además de queryParams en la ruta
+        
+ ![image](https://user-images.githubusercontent.com/67627523/157638044-fe09d6f3-9c10-4923-aa6c-e97205649d0d.png)
+  
+  . Params Angular rutas
+  
+            Podemos pasar parametros además de queryParams en la ruta
                 necesitamos pasar un ID en el contact-template
                 vamos al `navbar.component.ts` y creamos un método. Utilizamos el método `navigate` al que le pasamos una ruta y el id 
                 goToTemplate(): void{
@@ -416,12 +429,14 @@ https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
                                 this.route.params.subscribe((params: Params) => {
                                 this.id = params[`'id'`];})(es la propiedad definida en la ruta)
                         }
+                        
                 En el contact.component.html interpolamos el id <h1>Contact form - UserId{{id}}</h1>
                 Ya podemos recoger el valor del id venga de donde venga.
+                
+![image](https://user-images.githubusercontent.com/67627523/157638200-ac25cead-6c66-4e59-9c53-1f7d2d470bc8.png)
 
+. Angular rutas hijas:
 
-
-. Angular rutas hijas 
         - Creamos tres nuevos componentes dentro de la carpeta Users(list, details y user).
         - Creamos las rutas en app.routin.module.ts
                 {path: 'users', component: UserComponent, 
@@ -433,7 +448,7 @@ https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
                 <li class="nav-item">
                         <a class="nav-link" routerLinkActive="active" routerLink="/users">Users</a>
                 </li>
-        - En user.component.html creamos la estructura para ir a list y details. Utilizando el routerLink para crear un enlace con la rutas de las página. Para a ver el contenido de las páginas hemos de utilizar la directiva <router-outlet></router-outlet> para pintar los diferentes componentes.
+        - En user.component.html creamos la estructura para ir a list y details. Utilizando el routerLink para crear un enlace con la rutas de las página. Para a ver el            contenido de las páginas hemos de utilizar la directiva <router-outlet></router-outlet> para pintar los diferentes componentes.
                         <div class="container">
                                 <div class="row">
                                         <div class="col-6">
@@ -445,7 +460,8 @@ https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
                                 </div>
                         </div>
                         <router-outlet></router-outlet>
-
+                        
+![image](https://user-images.githubusercontent.com/67627523/157638868-9677ecfb-4490-485c-8a34-24bb0cead115.png)
 
 
 
