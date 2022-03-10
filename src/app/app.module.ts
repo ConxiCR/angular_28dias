@@ -10,7 +10,7 @@ import { FormNewItemComponent } from './form-new-item/form-new-item.component';
 import { CitiesComponent } from './cities/cities.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { ContactComponent } from './contact/contact.component';
-import { ContactReactiveComponent } from './contact-reactive/contact-reactive.component';
+//import { ContactReactiveComponent } from './contact-reactive/contact-reactive.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
@@ -26,7 +26,7 @@ import { ListComponent } from './users/list/list.component';
     CitiesComponent,
     FilterPipe,
     ContactComponent,
-    ContactReactiveComponent,
+    //ContactReactiveComponent,
     HomeComponent,
     NavbarComponent,
     PagenotfoundComponent,
@@ -38,7 +38,7 @@ import { ListComponent } from './users/list/list.component';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    //ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -20,24 +20,24 @@ creación del button. En html <app-button></app-button> La información viene de
 (https://www.youtube.com/watch?v=qjuYVJPb_Qg&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=4)
 Nos permite escribir una cadena de texto entre elementos de html. 
 
-        `<!--interpolacion en elementos html-->
+        `<!--interpolación en elementos html-->
         <p>{{ title }} con Angular</p>
-        <!--interpolacion en calculos matematicos. One way, no se puede modificar-->
+        <!--interpolación en cálculos matemáticos. One way, no se puede modificar-->
         <p>Total: {{ 5+5 }}</p>`
         
         También se puede utilizar en los atributos.
-        <!--interpolacion en atributos-->
+        <!--interpolación en atributos-->
         <img src="{{ url }}" alt="">
 ### RETO5 - Enlace de datos bidireccional && two-way data binding
 (https://www.youtube.com/watch?v=EuFh5s5lYIU&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=5)
-Enlazar una propiedad que esta en .ts imprimirla o tenerla en html y modificar su valor simultaneamente
-`[(ngModel)]` (banana on the box) - importaremos el módulo del formulario. Crea una instancia del formControl para enlazar el modelo del form al input. Injectamos en appmodule el FormsModule. Pasos:
+Enlazar una propiedad que está en .ts imprimirla o tenerla en html y modificar su valor simultáneamente
+`[(ngModel)]` (banana on the box) - importaremos el módulo del formulario. Crea una instancia del formControl para enlazar el modelo del form al input. Inyectamos en appmodule el FormsModule. Pasos:
 
         1. creamos la propiedad en .ts
         2. creamos el input en .html
         3. importamos el módulo FormsModule en .module
         
-        <p>El nombr es: {{ name }}</p>
+        <p>El nombre es: {{ name }}</p>
         <input type="text" [(ngModel)]="name">
         
 ![two-way data biding](https://user-images.githubusercontent.com/67627523/155089318-cb3713d6-cf2f-4059-8460-0569658d2702.png)
@@ -45,20 +45,20 @@ Enlazar una propiedad que esta en .ts imprimirla o tenerla en html y modificar s
 (https://www.youtube.com/watch?v=ZUX_K4jR-9Q&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=6)
 Directivas, atributos que pueden cambiar la apariencia o el comportamiento del DOM element.
 Hay 4 tipos: 
-       . estructurales(pueden modificar elementos del DOM)
+       . estructurales (pueden modificar elementos del DOM)
        . De atributos
        . Customs
-       . componentes(directivas con template).
+       . componentes (directivas con template).
 Directivas estructurales `ngIf` `nFor`
 ### RETO7 - ¿Qué son las directivas de atributos? ngClass, ngStyle
 (https://www.youtube.com/watch?v=9ZExEHDREeQ&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=7)
-`ngClass` permite de manera dinámica añadir o eleminar una clase de un elemento
+`ngClass` permite de manera dinámica añadir o eliminar una clase de un elemento
 
         <ul *ngFor="let city of cities">
            <!--<li {{city}}</li>-->
             <!--pasamos un string. Clase-->
             <li [ngClass]= "'selected blue'">{{city}}</li>
-            <!--pasamos un array de strings. Siempre es mas facil añadir clases-->
+            <!--pasamos un array de strings. Siempre es más fácil añadir clases-->
             <li [ngClass]= "['selected', 'blue']">{{city}}</li>
             <!--pasamos un objeto. Si la condición se cumple se aplica la clase-->
             <li [ngClass]= "{'selected': city === 'Barcelona', 'blue': city != 'Barcelona'}">{{city}}</li>
@@ -76,8 +76,8 @@ https://www.youtube.com/watch?v=8lHdqC1GDGs&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
 `Ciclo de Vida`
 https://docs.google.com/presentation/d/1-XqwFA0ph5YTMwP9cjIqWSHR0BL04Xq1tw0Cmxcsk0U/edit#slide=id.g35f391192_00
 
-Para utilizar los métodos, primero hemos de impletar la inteface en la clase. 
-`OnChanges` - se ejecuta siempre y cuando hayan inputs & outputs.
+Para utilizar los métodos, primero hemos de implementar la interface en la clase. 
+`OnChanges` - se ejecuta siempre y cuando haya inputs & outputs.
 `OnInit` sería el segundo o el primero si no hay OnChanges
 `OnDestroyed`
 
@@ -95,14 +95,14 @@ Escuchar y responder a las acciones como click, movimiento del mouse, pulsar tec
     <div *ngIf="selection">
         <!--directiva ngIf para que cuando tenga algo se muestre sino no-->
         <p>Your city is: {{selection}}</p>
-        <!--para limpiar la seleccion creamos un button-->
+        <!--para limpiar la selección creamos un button-->
         <button (click)="onClear()">Clear your selection</button>
     </div>
 
 ### RETO1O Decorador @Input 
 https://www.youtube.com/watch?v=0JyLTgqGjYo&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=10
 
-Un decorador se puede adjuntar a una clase metodo, propiedad. Modifica el comportamiento.
+Un decorador se puede adjuntar a una clase método, propiedad. Modifica el comportamiento.
 En un componente hijo la propiedad va a recibir un valor desde el padre
 
 template: `<button>{{label}}</button>` => se puede hacer en el .html o utilizar el template del .ts
@@ -134,11 +134,11 @@ dos properties color y label
 https://www.youtube.com/watch?v=pycu2vAmER4&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=11
 El flujo de los datos es del hijo hasta el padre
 Añadimos bootstrap en el css.
-Que necesitamos: decorador @output que nos permite comunicarnos desdel hijo. Nesitamos un input con un label y un botón de añadir para poder añadir ciudades de manera dinámica en lugar de la array de donde las cargamos ahora.
+Que necesitamos: decorador @output que nos permite comunicarnos des del hijo. Necesitamos un input con un label y un botón de añadir para poder añadir ciudades de manera dinámica en lugar de la array de donde las cargamos ahora.
 . Necesitamos un método addNewCity() que no va a devolver nada, pero va a recibir city's
 . Creamos nuevo componente formulario. Y lo aplico en app.component.html
 . Montamos el html del form
-. Que necesito? Cuando introduzco algo en el input y haga click en add necesitamos añadir la información a un método template variable # + nombre(#itemNew):HtmlInputElement
+. ¿Que necesito? Cuando introduzco algo en el input y haga clic en add necesitamos añadir la información a un método template variable # + nombre(#itemNew):HtmlInputElement
 . Creamos dos propiedades label y className.
 . output para emitir la información del input hacia el padre. El método de guardar esta en el padre (addNewCity). Creamos un evento en el decorador output. En el método onAddNewItem, creamos el método emit de item. Para que nos escuche el padre indicamos en .html del padre llamamos al método del hijo. Al actualizar desaparece la información.
         `app.component.ts` padre
@@ -180,12 +180,12 @@ https://angular.io/api/core/ChangeDetectorRef#usage-notes
 https://angular.io/errors/NG0100
 https://angular.io/api/core/ChangeDetectionStrategy
 
-`Change detection:` mecanismo que tiene Angular para detectar cuando el modelo cambia renderizar la vista sobre esos cambios. Es el mecanismo que se encarga de tener actualizados los componentes de la web en todo momento.  Los cambios los producen los eventos del mouse, las llamadas http request, setInterval, setTimeOut. Hay dos estrategiass:
-        `Default` el se encarga de actualizar cuando el modelo cambia para actualizar la vista y viceversa ya que es two ways.` CheckAlways`
-        `OnPush`(bajo demanda) `CheckOnce`.
+`Change detection:` mecanismo que tiene Angular para detectar cuando el modelo cambia renderizar la vista sobre esos cambios. Es el mecanismo que se encarga de tener actualizados los componentes de la web en todo momento.  Los cambios los producen los eventos del mouse, las llamadas http request, setInterval, setTimeOut. Hay dos estrategias:
+        `Default` se encarga de actualizar cuando el modelo cambia para actualizar la vista y viceversa ya que es two ways.` CheckAlways`
+        `OnPush` (bajo demanda) `CheckOnce`.
 . Creamos un componente nuevo "cities"
-. Para saber que esta ocurriendo cuando se trabaja con componentes hijos todo funciona en forma de árbol. El ChangeDetection:
-        . En la pestaña de source en el inspector de código. Con ctrl + p buscamos el fichero vendor.js. Buscamos el método `tick()`. Es el encargado de determinar cuando Angular vuelve a repintar la vista. Encima del número de línea, botón derecho escogemos logpoint y escribimos 'Inside tick()' y veremos como actua Angular. Console y veremos dos `Inside tick` por los dos checks que hace Angular para verificar. Que sólo hace en modo desarrollo no en producción.
+. Para saber que está ocurriendo cuando se trabaja con componentes hijos todo funciona en forma de árbol. El ChangeDetection:
+        . En la pestaña de source en el inspector de código. Con ctrl + p buscamos el fichero vendor.js. Buscamos el método `tick()`. Es el encargado de determinar cuándo Angular vuelve a repintar la vista. Encima del número de línea, botón derecho escogemos logpoint y escribimos 'Inside tick()' y veremos cómo actúa Angular. Console y veremos dos `Inside tick` por los dos checks que hace Angular para verificar. Que sólo hace en modo desarrollo no en producción.
 ![image](https://user-images.githubusercontent.com/67627523/157274190-f7648d36-14c3-4c47-9a52-42f7f26ab874.png)
 
 `form-new-item.component.ts` para renderizar. Y lo colocamos en cualquier parte del html. Lo replicamos en todos los componentes hijos.
@@ -202,7 +202,7 @@ https://www.youtube.com/watch?v=pAkG9KLrAxI&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
 https://angular.io/guide/pipes
 
 Pipe sirven para transformar data. Reciben un dato que pueden transformar. Angular tiene dos tipos de pipes, los que vienen por defecto y los custom pipes se adecuan a nuestras necesidades.
-Pueden ser puros o impuros. Los `puros` vienen por defecto. Angular transforma la data y hasta que esa data no vuelve a cambiar Angular no vuelve a computar o realizar esa transformación. Los `impuros` se ejecuta el ciclo de detección de cambios Angular volvera a transformar la data aunque la data no haya cambiado.
+Pueden ser puros o impuros. Los `puros` vienen por defecto. Angular transforma la data y hasta que esa data no vuelve a cambiar Angular no vuelve a computar o realizar esa transformación. Los `impuros` se ejecuta el ciclo de detección de cambios Angular volverá a transformar la data aunque la data no haya cambiado.
 
 Los `pipes por defecto que tiene Angular` hay una lista y se pueden combinar varios pipes.
 
@@ -214,7 +214,7 @@ Los `pipes por defecto que tiene Angular` hay una lista y se pueden combinar var
 Mirar ISO 4217 donde hay todos los códigos para la transformación de monedas.
 
 `pipes customizados`
-. Creamos un pipe, bien automáticamente(ng g pipe (carpeta)) o manualmente.
+. Creamos un pipe, bien automáticamente (ng g pipe (carpeta)) o manualmente.
 Pipe es una clase que debe implementar una interface y nos indican que método necesitamos.
 El decorador @pipe nos sirve para modificar el comportamiento de una clase. 
 Si lo hacemos manual hemos de importarlo en app.module.ts
@@ -226,13 +226,13 @@ export class FilterPipe implements PipeTransform{
     //vamos a recibir una array de valores para recibir las ciudades y un argumento. Se van a recorrer todas las ciudades
     //para aplicar un filtro
     //indexOf busca dentro de un substring dentro del argumento si encuentra algo devuelve la posición sino -1
-    //dara un resultado mas el valor que tengamos en ese momento
+    //dará un resultado más el valor que tengamos en ese momento
     transform(values: string[], arg: string): string[] {
-        //devolveremos los valores que recibimos si el argumento si es bacio o null se devuelve 
+        //devolveremos los valores que recibimos si el argumento si es vacío o null se devuelve 
         //o empiece a buscar si el argumento tiene más de 3 caracteres
         if(!arg || arg?.length < 3) return values;
         let result:string[] = [];
-        for(const value of values){
+        for (const value of values){
             //igualamos lo que introduce el usuario introduce en el input como los elementos del array sea de minúscula a minúscula
             if(value.toLowerCase().indexOf(arg.toLowerCase()) > -1){
                 result = [...result, value]
@@ -247,12 +247,12 @@ https://www.youtube.com/watch?v=AYOQB6leTts&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
 https://github.com/domini-code/reto-angular-formularios
 
 Dos enfoques para trabajar con formularios: Template-drive forms y Reactives forms.
-`Template-drive forms`(formulario de contactos sencillo, subscripcion de email, cosas sencillas sin campos anidados)
+`Template-drive forms`(formulario de contactos sencillo, suscripción de email, cosas sencillas sin campos anidados)
 
   . Creamos carpeta contact
   . Creamos formulario en .html
   . Maquetación de Angular con formularios ngForm. https://angular.io/api/forms/NgForm
-          Creación del `Template variable reference` https://angular.io/api/forms/NgForm#template-variable-references para tener acceso a las variables de esa              Directiva. En `contact.component.ts`. En el app.module tenermos que importar los formularios
+          Creación del `Template variable reference` https://angular.io/api/forms/NgForm#template-variable-references para tener acceso a las variables de esa              Directiva. En `contact.component.ts`. En el app.module tenemos que importar los formularios
           <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
   .¿Cómo asociamos nuestros campos? Enlace unidireccional es simple no tiene que cargar data(sólo se incorporaran datos por el usuario y enviarlos al APi) otra manera      es cargar la data y enlazar con un model.
 #### Viene predefinido en Angular. Es un pipe de json
@@ -260,13 +260,13 @@ Dos enfoques para trabajar con formularios: Template-drive forms y Reactives for
 ![image](https://user-images.githubusercontent.com/67627523/157274675-05ee17dd-1585-40e4-8728-f592c16e0f47.png)
 
 
-`opción 1` - El usuario introduce data, almacenamos la data y la enviamos a la api. Una via de comunicación. Mediante el atributo "name".
+`opción 1` - El usuario introduce data, almacenamos la data y la enviamos al api. Una vía de comunicación. Mediante el atributo "name".
 https://angular.io/api/forms/NgForm
 
 Se pueden pasar values o el contactForm
 <form (ngSubmit)="onSubmit(contactForm)" #contactForm="ngForm">
 
-`opcion 2` - si necesitamos cargar data en el formulario. Si necesitamos enviar data utilizamos el two-way data biding. `[(ngModel)]="model.name"` En lugar de utilizar directamente el ngModel utilizamos el banana on de box para hacer el two-way data binding. De esta manera enlazamos el html con el ts.
+`opción 2` - si necesitamos cargar data en el formulario. Si necesitamos enviar data utilizamos el two-way data biding. `[(ngModel)]="model.name"` En lugar de utilizar directamente el ngModel utilizamos el banana on de box para hacer el two-way data binding. De esta manera enlazamos el html con el ts.
 
 
 Para trabajar con formularios template driven hacen falta 3 cosas:
@@ -276,9 +276,9 @@ Para trabajar con formularios template driven hacen falta 3 cosas:
   3) cada campo del formulario debe de tener el atributo nombre y la directiva NgModel
 
 . Validaciones
-Se puede validar si se ha tocado un campo concreto, se haya introducido algún valor o sólo introduce el cursor y sale (onTouch). En el input #name="ngModel" en el <div [hidden]="name.valid || name.pristine" Sólo se muestra cuando el campo sea inválido o pristine cuando el usuario haya cambiado algo en la UI o se haya cambiado algo en la inteface.
-EL botón de enviar lo desabilitamos para que sólo sea válido si todo esta validado. En el button [disabled]="contactForm.invalid". No podrá hacer envios.
-También se puede validar el formulario desdel .ts en el submit. Tendriamos que recibir todo el formulario en lugar del valor.
+Se puede validar si se ha tocado un campo concreto, se haya introducido algún valor o sólo introduce el cursor y sale (onTouch). En el input #name="ngModel" en el <div [hidden]="name.valid || name.pristine" Sólo se muestra cuando el campo sea inválido o pristine cuando el usuario haya cambiado algo en la UI o se haya cambiado algo en la interface.
+EL botón de enviar lo desabilitamos para que sólo sea válido si todo esta validado. En el button [disabled]="contactForm.invalid". No podrá hacer envíos.
+También se puede validar el formulario des del .ts en el submit. Tendríamos que recibir todo el formulario en lugar del valor.
                 
                 onSubmit(values: any): void {
                         console.log('Form values', values);
@@ -288,7 +288,7 @@ También se puede validar el formulario desdel .ts en el submit. Tendriamos que 
                 } con el form
                 
 ![image](https://user-images.githubusercontent.com/67627523/157274933-46688c71-e5f1-48b6-bc94-d0af406add1a.png) La propiedad `value` nos da los valores introducidos en el formulario
-![image](https://user-images.githubusercontent.com/67627523/157275411-bebd0aae-c20e-4fa5-8306-46b9f5f9c8f5.png) La propiedad `valid` se puede comprovar si es igual a true seguimos sino no hacemos nada
+![image](https://user-images.githubusercontent.com/67627523/157275411-bebd0aae-c20e-4fa5-8306-46b9f5f9c8f5.png) La propiedad `valid` se puede comprobar si es igual a true seguimos sino no hacemos nada
 
 ### RETO14 Formularios template-driven form Angular - video2
 https://www.youtube.com/watch?v=epSVNMtG80I&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=15
@@ -299,17 +299,17 @@ Todo parte de una clase `ABSTRACTCONTROL` que tiene varias subcontrol `FormContr
 `Reactives Forms Directives`(FormGroup, FormControl, FormControlNative, FormGroupName y FormArray)
 . Creamos un nuevo componente `contact-reactive`
 . Ponemos el componente en el app.component.html <app-contact-reactive></app-contact-reactive>
-. Importamos el modulo de formularios reactivos al app.module.ts `ReactiveFormsModule`
+. Importamos el módulo de formularios reactivos al app.module.ts `ReactiveFormsModule`
 . Copiamos el formulario de contact a contact-reactive. Se pueden combinar los dos tipos de formularios.
 . No necesitamos en ngModel ni la referencia para la validación.
 . Utilizamos la directiva formControlName="name"
-. Como gestionamos el formulario con el reactivo? En lugar de la variable de referencia utilizamos el [formGroup] + nombre del formulario.
+. ¿Como gestionamos el formulario con el reactivo? En lugar de la variable de referencia utilizamos el [formGroup] + nombre del formulario.
 . Creamos método y propiedad.
-. `OPCIÓN ADICIONAL:` Cuando tenemos un sólo input podriamos trabajar con esta opción: trabajar con el FormControl. Podriamos ver cada vez que cambie el valor del input con un observable.
+. `OPCIÓN ADICIONAL:` Cuando tenemos un sólo input podríamos trabajar con esta opción: trabajar con el FormControl. Podremos ver cada vez que cambie el valor del input con un observable.
           ![image](https://user-images.githubusercontent.com/67627523/157436144-b75a42aa-7e36-476a-a783-c362b590ce19.png)
 
-. Creamos un método para iniciar el formulario. Que va a devolver un FormGroup. Declararemos las propiedades del formulario con el FormBuilder(creador de formularios). Para poder utilizarlo tenemos que hacer la importación al constructor. Podremos escoger entre(array, control y un group). El group es un método que espera un objeto a donde definir los campos.
-Los campos estan formados por el nombre del campo y argumentos. El 1r argumento puede ser null, vacio o definido. EL segundo las diferentes validaciones simples o en [] para pasar más de una. Pueden ser más de una. Como lo vamos a devolver `return`.
+. Creamos un método para iniciar el formulario. Que va a devolver un FormGroup. Declararemos las propiedades del formulario con el FormBuilder (creador de formularios). Para poder utilizarlo tenemos que hacer la importación al constructor. Podremos escoger entre(array, control y un group). El group es un método que espera un objeto a donde definir los campos.
+Los campos estan formados por el nombre del campo y argumentos. El 1r argumento puede ser null, vacío o definido. EL segundo las diferentes validaciones simples o en [] para pasar más de una. Pueden ser más de una. Como lo vamos a devolver `return`.
         initForm(): FormGroup{
                 return this.fb.group({
                         name: ['', [Validators.required, Validators.minLength(3)]], (mínimo de caracteres 3)
@@ -323,9 +323,9 @@ Los campos estan formados por el nombre del campo y argumentos. El 1r argumento 
 . Validaciones: 
         campo name - directiva `ngIf`. Accedemos al formulario mediante el `contactForm.get` y como string el nombre del campo comprobamos si ha sido tocado, pero también tiene que ser invalido. Propiedad `errors` que sólo existe si hay errores porque puede ser null. Tiene que ser requerido.
         <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['required']" class="alert alert-danger">
-        Otra validación es que sea tocada y que tenga más de 3 caracteres: `minlength tiene que ir en minusculas`
+        Otra validación es que sea tocada y que tenga más de 3 caracteres: `minlength tiene que ir en minúsculas`
         <div *ngIf="contactForm.get('name')?.touched && contactForm.get('name')?.errors?.['minlength']" class="alert alert-danger">Name must be longer then 3 characters.</div>
-        -> Se puede hacer de forma dinámica por si el metodo cambiara `Name must be longer than{{contactForm.get('name')?.errors?.['minlength']?.requiredLength}}characters.`
+        -> Se puede hacer de forma dinámica por si el método cambiara `Name must be longer than{{contactForm.get('name')?.errors?.['minlength']?.requiredLength}}characters.`
 
         Para indicarle data podemos utilizar el patchValue. p.e: 
                         onPathValue(): void {
@@ -353,20 +353,20 @@ La ruta es:
         ];
 . Llevar la directiva <router-outlet></router-outler> al componente principal.
 . El html del app.component.html llevarlo al `home.component.html`
-. Necesitamos enlaces para navegar más facil no tener que introducir las rutas desde la barra de direcciones.
+. Necesitamos enlaces para navegar más fácil no tener que introducir las rutas desde la barra de direcciones.
 . Creamos un componente navbar y le indicamos que lo coloque en el app.module.ts `ng g c navbar -m app`
-Lo vamos a llamar desdel app.component.html
+Lo vamos a llamar des del app.component.html
 . Incorporamos estilo bootstrap para el navbar https://getbootstrap.com/docs/5.1/components/navbar/
 Maquetamos el html indicando las rutas creadas. Para que nos lleve a las páginas indicadas.
          <a class="nav-link" href="/contact-reactive">Reactivo</a>
 . Para que no recargue las páginas una y otra vez y la convierta en una `single-page` utilizamos el `routerLink` en lugar del href.
 . Clase `active` de bootstrap. Cuando esta en una ruta determinada cambia un poco los estilos. Cambiamos background para que se vea la diferencia.
-. Para saber que estamos en una determinada ruta  Angular tiene una clase `routerLinkActive` que es parte de la directiva `routerLink`. Sirve para indicarle que señale cuando la ruta este activa.
+. Para saber que estamos en una determinada ruta Angular tiene una clase `routerLinkActive` que es parte de la directiva `routerLink`. Sirve para indicarle que señale cuando la ruta este activa.
 . Para que no tenga varias opciones activas se puede hacer de dos formas:
         1. [routerLinkActiveOptions]="{exact: true}" en la ruta home
         <a class="nav-link active" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/home">Home</a>
         2. En la ruta bacia indicarle /home.
-### RETO16 Rutas hijas, párametros y QueryParams en Angular
+### RETO16 Rutas hijas, parámetros y QueryParams en Angular
 https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=18
 
 . Página 404 Angular APP 
@@ -381,9 +381,9 @@ https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
 
         En `navbar.component.ts`:
         
-        1. injectamos la clase router
-        constructor( private readonly router: Router) { }
-        2. Creamos un método que podemos acceder a la instancia del router y al método `navigate`, al que le pasamos una url y 2o parámetro una queryParams a donde                 pasaremos un objeto.
+        1. InYectamos la clase router
+        constructor ( private readonly router: Router) { }
+        2. Creamos un método que podemos acceder a la instancia del router y al método `navigate`, al que le pasamos una URL y 2o parámetro una queryParams a donde                 pasaremos un objeto.
         goToReactive(): void{
                 this.router.navigate(['contact-reactive'], {queryParams: {name: 'Hola Mundo'}});
         }
@@ -391,7 +391,7 @@ https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
         Replicamos el enlace de Reactive para utilizar una manera diferente al `routerLink`
         <a class="nav-link" routerLinkActive="active" (click)="goToReactive()">Reactive</a>
         En la barra de direcciones del buscador aparece: http://localhost:4200/contact-reactive?name=Hola_Mundo
-        Como lo recuperamos? 
+        ¿Como lo recuperamos? 
         En el componente contact-reactive.component.ts creo una propiedad "name" a donde se va a almacenar el valor que se pasa por la URL. Utilizamos una directiva              `ActiveRoute`
         `name!`: string;
         constructor( private readonly fb: FormBuilder ,
@@ -410,19 +410,19 @@ https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
   
   . Params Angular rutas
   
-            Podemos pasar parametros además de queryParams en la ruta
+            Podemos pasar parámetros además de queryParams en la ruta
                 necesitamos pasar un ID en el contact-template
                 vamos al `navbar.component.ts` y creamos un método. Utilizamos el método `navigate` al que le pasamos una ruta y el id 
                 goToTemplate(): void{
                         this.router.navigate(['contact-template', `'580'`]);
                 }
-                vamos al `navbar.component.html` y en lugar de utilizar el routerLink utilizamos el (click). Cuando el usuario haga click vaya al método `goToTemplate`.
+                vamos al `navbar.component.html` y en lugar de utilizar el routerLink utilizamos el (click). Cuando el usuario haga clic vaya al método `goToTemplate`.
                 AL mirar en el navegador nos dará error, ya que hemos creado una ruta nueva.
                 ¿Cómo convertirla en dinámica? En `app.routing.module.ts` le indicamos a la ruta determinada que habrá un valor que será dinámico:
                 {path: 'contact-template`/:id`', component: ContactComponent},
                 Ahora sí reconoce la ruta. ¿Cómo recuperamos el id desde la URL?
                 En el template, `contact.component.ts` creamos un id: string;
-                Injectamos la interface:
+                Inyectamos la interface:
                 constructor(private readonly route: ActivatedRoute) { }
                         Accedemos al route params
                         ngOnInit(): void {
@@ -448,7 +448,7 @@ https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
                 <li class="nav-item">
                         <a class="nav-link" routerLinkActive="active" routerLink="/users">Users</a>
                 </li>
-        - En user.component.html creamos la estructura para ir a list y details. Utilizando el routerLink para crear un enlace con la rutas de las página. Para a ver el            contenido de las páginas hemos de utilizar la directiva <router-outlet></router-outlet> para pintar los diferentes componentes.
+        - En user.component.html creamos la estructura para ir a list y details. Utilizando el routerLink para crear un enlace con las rutas de las páginas. Para a ver el            contenido de las páginas hemos de utilizar la directiva <router-outlet></router-outlet> para pintar los diferentes componentes.
                         <div class="container">
                                 <div class="row">
                                         <div class="col-6">
@@ -466,11 +466,11 @@ https://www.youtube.com/watch?v=ZN5d9mqeSao&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
 ### RETO17 Guardianes en Angular (Guards)
 https://www.youtube.com/watch?v=Fhq20zubpPc&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=18
 
-Ayudan a proteger una determinada ruta o bien para que no entren sino se esta logado. Otra opción es si un usuario quiere salir de una ruta y hay datos por guardar. Hay que hacer las comprobaciones. Se pueden tener diferentes interfaces de guards.
+Ayudan a proteger una determinada ruta o bien para que no entren sino se está logado. Otra opción es si un usuario quiere salir de una ruta y hay datos por guardar. Hay que hacer las comprobaciones. Se pueden tener diferentes interfaces de guards.
 
 - Creamos un guard ng g guard permissions
-nos pregunta que intefaces queremos implementar. Por defecto esta marcada ()CanActivate
-- Creamos otro guard para implementar otra interfaces y quitar el modo test
+nos pregunta que intefaces queremos implementar. Por defecto está marcada ()CanActivate
+- Creamos otro guard para implementar otras interfaces y quitar el modo test
                 ng g guard withoutSave --skip-tests=true
                 ? Which interfaces would you like to implement? (Press <space> to select, <a> to toggle all, <i> to invert selection, and <enter> to proceed)
                 ( ) CanActivate
@@ -481,7 +481,7 @@ nos pregunta que intefaces queremos implementar. Por defecto esta marcada ()CanA
 . Permissions.guards.ts
         `CanActivate`
         Si puede usar esa ruta.
-        Ha creado una clase que implementa una inteface que permite al usuario acceder a una determinada ruta. Estructura:
+        Ha creado una clase que implementa una interface que permite al usuario acceder a una determinada ruta. Estructura:
         export class PermissionsGuard implements CanActivate {
                 canActivate(
                 route: ActivatedRouteSnapshot,
@@ -489,8 +489,8 @@ nos pregunta que intefaces queremos implementar. Por defecto esta marcada ()CanA
                 return true;
                 }
            }
-        Como en nuestro ejemplo no tenemos sistema de log in quitaremos del método CanActive el route y el state. Crearemos un método para simular si un usuario esta           logado o no. De tipo boleano que nos devolverá false para que salte la alerta.
-        Le decimos al CanActive, si nuestro método `hasUser` devuelve true y de lo contrario se podria redireccionar al login. De momento, en pantalla se imprime un           alert.
+        Como en nuestro ejemplo no tenemos sistema de log in quitaremos del método CanActive el route y el state. Crearemos un método para simular si un usuario esta           logado o no. De tipo booleano que nos devolverá false para que salte la alerta.
+        Le decimos al CanActive, si nuestro método `hasUser` devuelve true y de lo contrario se podría redireccionar al login. De momento, en pantalla se imprime un           alert.
         Implementamos en el fichero de rutas app.routing.module.ts.
         Hay que proteger la URL de usuarios. Se puede utilizar más de un guard que aplique para una ruta. Se verian afectadas las hijas también.
   
@@ -501,24 +501,24 @@ nos pregunta que intefaces queremos implementar. Por defecto esta marcada ()CanA
   . withoutSave.guards.ts
         `CanDesactivate`
         Si puede salir de esa ruta.
-        El usuario esta en un formulario, intenta salir sin guardar los cambios se le avisa que tiene que hacerlo.
-        En este caso comprobamos el método, si esta logado devuelve true y si no lo esta se utiliza el `config` de JS como un alerm. Si devuelve true, el usuario               continuo sino no.
+        El usuario está en un formulario, intenta salir sin guardar los cambios se le avisa que tiene que hacerlo.
+        En este caso comprobamos el método, si esta logado devuelve true y si no lo esta se utiliza el `config` de JS como un alerma. Si devuelve true, el usuario               continuo sino no.
   
   ![image](https://user-images.githubusercontent.com/67627523/157655468-1ce365f4-74cf-4af4-826f-96641058085a.png)
 
-### RET18 ¿Para sirve un Resolver en Angular? 
+### RET018 ¿Para sirve un Resolver en Angular? 
 https://www.youtube.com/watch?v=InZ9GZSTVX4&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=19
 
 Interface que las clases pueden implementar para ser un proveedor de datos.
 `Qué es Resolver? `
-Es el mecanismo que se encarga en Angular de que cuando nosostros lleguemos a un determinado componente o una vista ya tengamos unos datos listos para renderizar y el componente no inicia su ciclo de vida hasta que la data no esta lista.
+Es el mecanismo que se encarga en Angular de que cuando nosotros lleguemos a un determinado componente o una vista ya tengamos unos datos listos para renderizar y el componente no inicia su ciclo de vida hasta que la data no está lista.
 Se debe usar con el router para resolver datos durante la navegación. 
 Se debe implementar un método resolve() que se invoca cuando comienza la navegación. 
 El router espera a que se resuelvan los datos antes de que finalmente se active la ruta.
 
 - Creamos una carpeta `resolver` y un fichero `data.resolver.service.ts`
  Lo hacemos manual pero se puede hacer con la Cli.
- Estructura: una clase DataResolverService que implementa un resolve(interface) que viene desde el Angular router. Cuando hay una petición a una API con un json muy extenso o no hay garantias que responda en el tiempo necesario se hace un resolve para que devuelva esa data.
+ Estructura: una clase DataResolverService que implementa un resolve(interface) que viene desde el Angular router. Cuando hay una petición a una API con un json muy extenso o no hay garantías que responda en el tiempo necesario se hace un resolve para que devuelva esa data.
 
  - Creamos el método resolve que devuelve un observable.
         Lo que va a devolver con of que convierte la array de la const en un observable.
@@ -552,7 +552,7 @@ La ruta que vamos a aplicar es la de contact-reactive. Se utiliza la propiedad r
 
         ngOnInit(): void {
         this.departments = this.route.snapshot.data['departments']
-        En `contact-reactive.component.html` podemos comprobar que la data esta llegando.
+        En `contact-reactive.component.html` podemos comprobar que la data está llegando.
         <pre>{{departments}}</pre>
 
         Modificamos el select hardcodeado para obtener los datos de manera dinámica. Podemos incorporar o anular departamentos(data) del resolve.
@@ -561,8 +561,28 @@ La ruta que vamos a aplicar es la de contact-reactive. Se utiliza la propiedad r
 
 ![image](https://user-images.githubusercontent.com/67627523/157689490-c5987c6c-f452-4d0a-a3f5-121fbb2d3ab7.png)
 
+### RET19 Lazy loading rutas Angular
+https://www.youtube.com/watch?v=dGqMnCUmr30&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=20
+EL lazy loading nos puede ayudar a mejorar el performance de la aplicación. Lazy loading o carga diferida es la ténica que utiliza Angular. Retrasa la carga de un determinado módulo hasta que el usuario o la aplicación lo necesita.
 
+`ng build` - Angular preparará la aplicación para llevar a producción. Carga todos los módulos se necesiten o no.
+Vamos a decirle a Angular el módulo específico lo queremos cuando realmente se necesite:
 
+- Creamos un módulo que nos creará dos módulos `ng g m contact-reactive --routing true`:
+        - genera un feature module  https://angular.io/guide/feature-modules (Este módulo estará de manera independiente)
+        - genera un módulo de rutas
+        .`app-routing.module.ts` 
+                - Copiamos la ruta desde el módulo principal al nuevo módulo-routing.
+                - Redirigimos hacía la nueva ruta. Creamos un path con la misma ruta. Utilizamos la propiedad `loadChildren` y utilizando la sintaxis de dynamic import(importando el módulo de manera dinámica). Le pasamos un string con la ruta del nuevo módulo. Nos va a devolver una promesa que nos va a devolver el módulo
+        {path: 'contact-reactive', loadChildren: ()=>
+                import('./contact-reactive/contact-reactive.module').then(m => m.ContactReactiveModule)
+        },
+        . `contact-reactive-routing.module.ts`(tiene la misma configuración que el app-routing.module.ts)
+                1. en el feature module `contact-reactive.module.ts` tenemos que declarar en declarations el formulario `ContactReactiveComponent` y borrarlo del módulo general `app.module.ts`. Nos da un error que nos indica que hay que importar el módulo de formularios reactivos (ReactiveFormsModule). También lo podemos borrar del módulo principal.
+                        Error: src/app/contact-reactive/contact-reactive.component.html:3:31 - error NG8002: Can't bind to 'formGroup' since it isn't a known property of 'form'.      
+
+                        3 <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+                                                        ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 
