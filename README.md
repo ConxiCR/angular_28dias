@@ -544,7 +544,7 @@ La ruta que vamos a aplicar es la de contact-reactive. Se utiliza la propiedad r
           canDeactivate:[WithoutSaveGuard],
           resolve: {departments: DataResolverService}},
 
-¿Cómo tenemos esa data cuando llegamos al componente?
+¿Cómo obtenemos esa data cuando llegamos al componente?
         modificamos el componente que queremos la data `contact-reactive.component.ts`
         this.route.snapshot.data['departments'] la propiedad snapshot tiene otra propiedad data que es a donde se solicita nuestra data
         
@@ -559,6 +559,7 @@ La ruta que vamos a aplicar es la de contact-reactive. Se utiliza la propiedad r
         <select>
         <option *ngFor="let department of departments" [value]="department">{{department}}</option>
 
+![image](https://user-images.githubusercontent.com/67627523/157689490-c5987c6c-f452-4d0a-a3f5-121fbb2d3ab7.png)
 
 
 
