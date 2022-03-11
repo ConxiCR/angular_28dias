@@ -561,7 +561,7 @@ La ruta que vamos a aplicar es la de contact-reactive. Se utiliza la propiedad r
 
 ![image](https://user-images.githubusercontent.com/67627523/157689490-c5987c6c-f452-4d0a-a3f5-121fbb2d3ab7.png)
 
-### RET19 Lazy loading rutas Angular
+### RET019 Lazy loading rutas Angular
 https://www.youtube.com/watch?v=dGqMnCUmr30&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=20
 EL lazy loading nos puede ayudar a mejorar el performance de la aplicación. Lazy loading o carga diferida es la ténica que utiliza Angular. Retrasa la carga de un determinado módulo hasta que el usuario o la aplicación lo necesita.
 
@@ -583,6 +583,14 @@ Vamos a decirle a Angular el módulo específico lo queremos cuando realmente se
 
                         3 <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~
+### RET20 forRoot & forChild
+https://www.youtube.com/watch?v=i8jRNClDGRg&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=21
+
+imports: [RouterModule.`forRoot`(routes)], no sólo tiene que ver con las rutas, sino que estos métodos estáticos que nos proporciona Angular los podemos utilizar como una library(bibliotecas).
+
+`forRoot` - se utiliza para colocar todas las rutas en el módulo principal raiz. Todo lo que no es lazy loading será eagle carga de manera inmediata todo el bondel. En principio, sólo se utiliza un `forRoot` en la aplicación. La intención es tener de manera directa. Lo que sea lazy loading tiene que ser `forChild` porque puede estar en otra factory(todo lo que va a necesitar la aplicación en ese momento). Al ser un módulo hijo Angular no lo carga en el inyector global. Se carga a demanda, cuando se necesita.
+
+Son prácticamente iguales. La diferencia es que Angular utliza un método u otro para saber si estamos en el inyector principal o en nuestro propio.
 
 
 
