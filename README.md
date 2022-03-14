@@ -506,7 +506,7 @@ nos pregunta que intefaces queremos implementar. Por defecto está marcada ()Can
   
   ![image](https://user-images.githubusercontent.com/67627523/157655468-1ce365f4-74cf-4af4-826f-96641058085a.png)
 
-### RET018 ¿Para sirve un Resolver en Angular? 
+### RETO18 ¿Para sirve un Resolver en Angular? 
 https://www.youtube.com/watch?v=InZ9GZSTVX4&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=19
 
 Interface que las clases pueden implementar para ser un proveedor de datos.
@@ -561,7 +561,7 @@ La ruta que vamos a aplicar es la de contact-reactive. Se utiliza la propiedad r
 
 ![image](https://user-images.githubusercontent.com/67627523/157689490-c5987c6c-f452-4d0a-a3f5-121fbb2d3ab7.png)
 
-### RET019 Lazy loading rutas Angular
+### RETO19 Lazy loading rutas Angular
 https://www.youtube.com/watch?v=dGqMnCUmr30&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=20
 EL lazy loading nos puede ayudar a mejorar el performance de la aplicación. Lazy loading o carga diferida es la ténica que utiliza Angular. Retrasa la carga de un determinado módulo hasta que el usuario o la aplicación lo necesita.
 
@@ -583,7 +583,7 @@ Vamos a decirle a Angular el módulo específico lo queremos cuando realmente se
 
                         3 <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~
-### RET20 forRoot & forChild
+### RETO20 forRoot & forChild
 https://www.youtube.com/watch?v=i8jRNClDGRg&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=21
 
 imports: [RouterModule.`forRoot`(routes)], no sólo tiene que ver con las rutas, sino que estos métodos estáticos que nos proporciona Angular los podemos utilizar como una library(bibliotecas).
@@ -592,11 +592,145 @@ imports: [RouterModule.`forRoot`(routes)], no sólo tiene que ver con las rutas,
 
 Son prácticamente iguales. La diferencia es que Angular utliza un método u otro para saber si estamos en el inyector principal o en nuestro propio.
 
+### RET21 ¿Cómo hacer una peticion HTTP en Angular? CRUD
+https://www.youtube.com/watch?v=Ypr6gU_rNlo&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=22
 
+¿Qué es HttpClient Angular?
+HttpClient es un cliente con los verbos REST, y está basado en Observables .
+Si te estás preguntando ¿Cómo hacer una peticion HTTP en Angular?
 
+        Crear añadir ciudades
+        Crear borrar ciudades
+        Crear leer ciudades
+        Crear update ciudades
+        
+        Crear put ciudades
+        Crear get ciudades
 
+        Botón deleate ocultar. Que sólo aparezca si se quiere borrar.
 
+        #### CRUD (httpClient con los métodos post, get, put y delete)
 
+        1. Cambio en el estilo del listado de `cities`:
+         en el componente `city` incorporamos un ul que estaba en `home`. 
+         Utilizamos clases de bootstrap.
+         Añadimos botón delete. 
+         Reacción cuando el usuario haga clic. creación del método onCityDeleate('id') al que le pasamos el id de la city. Vamos a emitir por lo que tenemos que crear un evento @output() cityDeleteEvent
+         En `home `escuchamos al evento de `cities`.
+         TODO: Nos falta crear el objeto en cities crear una propiedad de nombre y de id. Para gestionar el CRUD. Creamos un inteface en el service.
+
+        2. Creación del services ng g s services/data --skip-tests=true(para que no genere el fichero de testing)
+         Creación de una interface en el servicio para crear el `id` y el `nombre` que necesitamos en `cities`. Aquí crearemos los métodos para hacer las peticiones.
+                export interface City{
+                        _id: string;
+                        name: string;
+                }
+
+        3. Comunicación con httpClient quien comunica con nuestro server.(appModule importar el httpClientModule import { HttpClientModule } from '@angular/common/http')  
+        Ahora podemos incluir el httpClient en el constructor del servicio.    
+
+        Utilizamos un servicio externo como backend https://crudcrud.com
+        Nos da una URL para gestionarlo https://crudcrud.com/api/84c96a51ea8043d8beeada03d6fadf56
+        Creamos una entity a partir de esta URL
+               
+                https://crudcrud.com
+        4. Creamos los 4 métodos para comunicarnos con la API una vez hayamos creado el httpClient:(return this.htpp más el verbo, el método tiene el nombre del verbo http)
+                - `POST`(añadir una nueva ciudad). En el método tenemos que declarar: 
+                        la URL y luego el body(opcional). En el body le pasamos el nombre que recibirá el nombre de la ciudad
+                        addNewCity(city: string):Observable<City>{
+                                const body = {name: city};
+                                return this.http.post<City>(this.API, body);
+                        }
+                - `GET` () vamos a utilizar una array de cities
+                        getCities(): Observable<City[]>{
+                                return this.http.get<City[]>(this.API)
+                        }
+                - `UPDATE` la estructura del put viene definida por la API
+                        updateCity(city:City): Observable<void>{
+                                const body = { name: city.name}
+                                return this.http.put<void>(`${this.API}/${city._id}`, body);
+                        }
+                - `DELETE`
+                        deleteCity(id: string):Observable<void>{
+                                return this.http.delete<void>(`${this.API}/${id}`);
+                        }
+         
+        5. Creamos la API con la URL que nos da el servicio de back. La creamos en `enviroment` y la entity al final.
+                enviroment:
+                export const environment = {
+                production: false,
+                api: 'https://crudcrud.com/api/84c96a51ea8043d8beeada03d6fadf56/cities',
+                };
+
+                En el service:
+                private readonly API = environment.api;
+        6. Modificar los métodos del `home`, ya que todo lo que era string ahora es `City`.
+                cities: City[] = [] nos devuelve una array
+                name: ya no lo necesitamos
+
+                implementamos el método onInit para ir a la API y hacer la petición para recuperar las ciudades. 
+                        1. Mediante el método constructor hacemos la inyección del service(DataService).
+                        2. En el método ngOnInit montamos la estructura para llamar a la API con el método que es un observable. Dentro de el recibimos un respon con data. Le llamaremos cities pero es un respon. Aquí recuperariamos los datos de la API.
+                                 ngOnInit(): void {
+                                        this.dataSVC.getCities()
+                                        .subscribe(cities => {
+                                                this.cities = [...cities];
+                                        })
+                                }
+                        3. Modificamos el home.html
+                                export class CitiesComponent {
+                                        @Input() city!: string; => `ahora será de tipo City`
+                                        @Input() selection!: string; => `ahora será de tipo City`
+                                        @Output() citySelectedEvent = new EventEmitter<string>();=> `ahora será de tipo City`
+                                        @Output() cityDeleteEvent = new EventEmitter<string>();
+                                onCitySelected(city: string): void{=> `ahora será de tipo City`
+                                        this.citySelectedEvent.emit(city); 
+                                }
+                                A donde describiamos el objeto hemos de definir que propiedad hay que imprimir. {{city | titlecase}}=> city.name
+                                También modificamos la condición [ngClass]= "{'active': city === selection}"=> será city._id y selection._id, cuando el id coincida que se aplique el active.
+                                Modificamos el pipe:
+                                transform(values: string[], arg: string): string[] {=>`ahora recibimos una array de ciudades`
+                                Cambiamos el value por ciudad.
+                                => Añadimos ciudades en `home.component.ts`
+                                Enviamos a la API la nueva ciudad y añadimos la respuesta, lo que nos devuelve la API, a la array de ciudades
+                                addNewCity(city: string):void {
+                                        //this.cities.push(city);
+                                        this.dataSVC.addNewCity(city)
+                                        .subscribe(res => {
+                                                this.cities.push(res)});
+                                }
+                                => Vamos al formulario para hacer cambios:
+                                Añadimos propiedad selection de tipo ciudad, para saber cuando el usuario selecciona una ciudad.
+                                En el form.html añadimos [(ngModel)]="selection?.name" le tenemos que indicar el name para que no salga el error [object][object]
+                                En el home.html podemos pasar la propiedad selection.
+                                Da error de que hay que definir un name. name="newItem"
+
+                                Modificaciones a hacer:
+                                - En form-new-item.component. html cuando enviamos a guardar le decimos que cuando se envie la propiedad se quede en blanco. (click)="onAddNewItem(newItem.value); newItem.value=''"
+                                - poner ? en todos los selection?
+                                - Ocultar botón delete. Hasta que no se seleccione no se enseña(la ciudad marcada sea igual al id de la ciudad). En cities.component.ts en el           <button> *ngIf= "city?._id === selection?._id"
+                                => Borramos ciudades en `home.component.ts`
+                                - Esta imagen 
+                                        viene de onCitySelected(city: City): void{
+                                                        console.log('City->', city);
+                                                        this.selection = city;
+                                                        }
+                                                        onCityDelete(id: string): void{
+                                                        console.log('id', id);
+                                                        }
+                                 . Creamos un confirm('Are you sure?') para preguntar al usuario
+                                 . if(confirm('Are you sure?')){
+                                        this.dataSVC.deleteCity(id).subscribe(() => {
+                                                const tempArray = this.cities.filter(city => city._id !== id);
+                                                this.cities = [...tempArray];
+                                                this.onClear(); => para que borre la consulta del input
+                                        });
+                                => upDate ciudades en `home.component.ts`
+
+                                =>Ocultamos los botones
+                                form.component.html - Hacer una condición si se selectiona un name funciona un botón sino el otro
+                                <button *ngIf="!selection?.name" 
+                                <button *ngIf="selection?.name"
 
 
 
