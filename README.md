@@ -608,10 +608,10 @@ Si te estás preguntando ¿Cómo hacer una peticion HTTP en Angular?
         Crear get ciudades
 
         Botón deleate ocultar. Que sólo aparezca si se quiere borrar.
+  
+#### CRUD (httpClient con los métodos post, get, put y delete)
 
-        #### CRUD (httpClient con los métodos post, get, put y delete)
-
-        1. Cambio en el estilo del listado de `cities`:
+1. Cambio en el estilo del listado de `cities`:
          en el componente `city` incorporamos un ul que estaba en `home`. 
          Utilizamos clases de bootstrap.
          Añadimos botón delete. 
@@ -619,14 +619,14 @@ Si te estás preguntando ¿Cómo hacer una peticion HTTP en Angular?
          En `home `escuchamos al evento de `cities`.
          TODO: Nos falta crear el objeto en cities crear una propiedad de nombre y de id. Para gestionar el CRUD. Creamos un inteface en el service.
 
-        2. Creación del services ng g s services/data --skip-tests=true(para que no genere el fichero de testing)
+2. Creación del services ng g s services/data --skip-tests=true(para que no genere el fichero de testing)
          Creación de una interface en el servicio para crear el `id` y el `nombre` que necesitamos en `cities`. Aquí crearemos los métodos para hacer las peticiones.
                 export interface City{
                         _id: string;
                         name: string;
                 }
 
-        3. Comunicación con httpClient quien comunica con nuestro server.(appModule importar el httpClientModule import { HttpClientModule } from '@angular/common/http')  
+3. Comunicación con httpClient quien comunica con nuestro server.(appModule importar el httpClientModule import { HttpClientModule } from '@angular/common/http')  
         Ahora podemos incluir el httpClient en el constructor del servicio.    
 
         Utilizamos un servicio externo como backend https://crudcrud.com
@@ -634,7 +634,8 @@ Si te estás preguntando ¿Cómo hacer una peticion HTTP en Angular?
         Creamos una entity a partir de esta URL
                
                 https://crudcrud.com
-        4. Creamos los 4 métodos para comunicarnos con la API una vez hayamos creado el httpClient:(return this.htpp más el verbo, el método tiene el nombre del verbo http)
+          
+ 4. Creamos los 4 métodos para comunicarnos con la API una vez hayamos creado el httpClient:(return this.htpp más el verbo, el método tiene el nombre del verbo http)
                 - `POST`(añadir una nueva ciudad). En el método tenemos que declarar: 
                         la URL y luego el body(opcional). En el body le pasamos el nombre que recibirá el nombre de la ciudad
                         addNewCity(city: string):Observable<City>{
@@ -655,7 +656,7 @@ Si te estás preguntando ¿Cómo hacer una peticion HTTP en Angular?
                                 return this.http.delete<void>(`${this.API}/${id}`);
                         }
          
-        5. Creamos la API con la URL que nos da el servicio de back. La creamos en `enviroment` y la entity al final.
+5. Creamos la API con la URL que nos da el servicio de back. La creamos en `enviroment` y la entity al final.
                 enviroment:
                 export const environment = {
                 production: false,
@@ -664,13 +665,13 @@ Si te estás preguntando ¿Cómo hacer una peticion HTTP en Angular?
 
                 En el service:
                 private readonly API = environment.api;
-        6. Modificar los métodos del `home`, ya que todo lo que era string ahora es `City`.
+6. Modificar los métodos del `home`, ya que todo lo que era string ahora es `City`.
                 cities: City[] = [] nos devuelve una array
                 name: ya no lo necesitamos
 
                 implementamos el método onInit para ir a la API y hacer la petición para recuperar las ciudades. 
                         1. Mediante el método constructor hacemos la inyección del service(DataService).
-                        2. En el método ngOnInit montamos la estructura para llamar a la API con el método que es un observable. Dentro de el recibimos un respon con data. Le llamaremos cities pero es un respon. Aquí recuperariamos los datos de la API.
+                        2. En el método ngOnInit montamos la estructura para llamar a la API con el método que es un observable. Dentro de el recibimos un respon con                               data. Le llamaremos cities pero es un respon. Aquí recuperariamos los datos de la API.
                                  ngOnInit(): void {
                                         this.dataSVC.getCities()
                                         .subscribe(cities => {
@@ -705,10 +706,12 @@ Si te estás preguntando ¿Cómo hacer una peticion HTTP en Angular?
                                 En el home.html podemos pasar la propiedad selection.
                                 Da error de que hay que definir un name. name="newItem"
 
-                                Modificaciones a hacer:
-                                - En form-new-item.component. html cuando enviamos a guardar le decimos que cuando se envie la propiedad se quede en blanco. (click)="onAddNewItem(newItem.value); newItem.value=''"
-                                - poner ? en todos los selection?
-                                - Ocultar botón delete. Hasta que no se seleccione no se enseña(la ciudad marcada sea igual al id de la ciudad). En cities.component.ts en el           <button> *ngIf= "city?._id === selection?._id"
+### Modificaciones a hacer:
+- En form-new-item.component. html cuando enviamos a guardar le decimos que cuando se envie la propiedad se quede en blanco. (click)="onAddNewItem(newItem.value); newItem.value=''"
+- poner ? en todos los selection
+- Ocultar botón delete. Hasta que no se seleccione no se enseña(la ciudad marcada sea igual al id de la ciudad). En cities.component.ts                                   en el           <button> *ngIf= "city?._id === selection?._i
+          
+![image](https://user-images.githubusercontent.com/67627523/158240961-c35bfff1-d65e-424e-bba2-d155ae3ec29f.png)
                                 => Borramos ciudades en `home.component.ts`
                                 - Esta imagen 
                                         viene de onCitySelected(city: City): void{
@@ -716,7 +719,7 @@ Si te estás preguntando ¿Cómo hacer una peticion HTTP en Angular?
                                                         this.selection = city;
                                                         }
                                                         onCityDelete(id: string): void{
-                                                        console.log('id', id);
+                                                        console.log('id', id);![Uploading image.png…]()
                                                         }
                                  . Creamos un confirm('Are you sure?') para preguntar al usuario
                                  . if(confirm('Are you sure?')){
