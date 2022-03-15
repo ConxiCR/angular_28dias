@@ -592,7 +592,7 @@ imports: [RouterModule.`forRoot`(routes)], no sólo tiene que ver con las rutas,
 
 Son prácticamente iguales. La diferencia es que Angular utiliza un método u otro para saber si estamos en el inyector principal o en nuestro propio.
 
-### RET21 ¿Cómo hacer una petición HTTP en Angular? CRUD
+### RETO21 ¿Cómo hacer una petición HTTP en Angular? CRUD
 https://www.youtube.com/watch?v=Ypr6gU_rNlo&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=22
 
 ¿Qué es HttpClient Angular?
@@ -738,6 +738,44 @@ Si te estás preguntando ¿Cómo hacer una petición HTTP en Angular?
                                 form.component.html - Hacer una condición si se selecciona un name funciona un botón sino el otro
                                 <button *ngIf="!selection?.name" 
                                 <button *ngIf="selection?.name"
+
+### RET22 HTTP Interceptor Angular
+https://www.youtube.com/watch?v=4ci7RfV0Pwc&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=23
+
+Interceptor - intercepta una petición http y la puede modificar. Es una especie de middlewear que esta entre el servidor y nuestra aplicación de Angular. Evita que repitamos parámetros en las diferentes peticiones, como unit o appid. 
+
+En esta aplicación no estamos utilizando ni headers ni ningún parámetro, vamos a añadir un loading utilizando el interceptor para que cada vez que haya una petición http lancemos el loading. Para no tener que estar pensando cuando lo mostramos o cuando lo ocultamos.
+
+=> Creamos nueva carpeta y nuevo componente `ng g c shared/spinner -m app`
+        spinner loading hear - https://codepen.io/DariaIvK/pen/EpjPRM
+=> Copiamos el código html y el css del loading.
+=> Colocamos el selector <app-spinner></app-spinner> en app.component.html.
+=> Creamos un service para que decida cuando mostrarse o cuando ocultarse. `ng g s shared/spinner`
+                . Creamos la propiedad isLoading$. `El símbolo del $ nos indica que es un observable. Convención`.
+                . Creamos dos métodos para enseñar o ocultar el loading.
+=> Inyectamos el service en el componente `spinner spinner.component.ts`. Para saber cuando mostrarlos o ocultarlo. 
+                . Creamos la propiedad isLoading$. Podremos acceder a la propiedad en nuestro service.
+                . Añado html en el componente para utilizar el observable y para subscribirlo, ya que sólo no haria nada.Utilizamos un pipe (async). Para que subscribir al valor del observable como cuando no este. Utilizamos "overlay" para cuando el loading este cargando y así bloqueamos la pantalla.
+                template: `
+            <div class="overlay" *ngIf="isLoading$ | async">
+              <div class="lds-heart">
+                <div></div>
+              </div>
+            </div>`
+=> Creamos el interceptor `ng g interceptor shared/spinner/spinner --skip-tests=true`
+        El fichero que se crea sigue la estructura de: una clase de typescript que esta implementando una interface el decorador injectable y un método que tiene la request y un next. Es muy parecido a un middlewear como en backend. Se sigue la ruta, se continua adelante(next) si todo se cumple.
+                . Utilizamos el pipe y dentro utilizaremos un operador de rxjs(finalize). Llamaremos al método hide para que oculte el spinner . `Creación del interceptor`
+=> Implementammos en el app.module para que escuche las peticiones http. En providers:
+        providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true}
+  ], El multi significa que podemos utilizar más de un interceptor.
+=> Modificamos estilos a la clase del spinner para que quede por encima de todos los elementos de la web. Y este centrado.
+        
+
+
+
+
+
 
 
 
