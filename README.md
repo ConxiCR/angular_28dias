@@ -563,7 +563,7 @@ La ruta que vamos a aplicar es la de contact-reactive. Se utiliza la propiedad r
 
 ### RETO19 Lazy loading rutas Angular
 https://www.youtube.com/watch?v=dGqMnCUmr30&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=20
-EL lazy loading nos puede ayudar a mejorar el performance de la aplicación. Lazy loading o carga diferida es la ténica que utiliza Angular. Retrasa la carga de un determinado módulo hasta que el usuario o la aplicación lo necesita.
+EL lazy loading nos puede ayudar a mejorar el performance de la aplicación. Lazy loading o carga diferida es la técnica que utiliza Angular. Retrasa la carga de un determinado módulo hasta que el usuario o la aplicación lo necesita.
 
 `ng build` - Angular preparará la aplicación para llevar a producción. Carga todos los módulos se necesiten o no.
 Vamos a decirle a Angular el módulo específico lo queremos cuando realmente se necesite:
@@ -573,9 +573,9 @@ Vamos a decirle a Angular el módulo específico lo queremos cuando realmente se
         - genera un módulo de rutas
         .`app-routing.module.ts` 
                 - Copiamos la ruta desde el módulo principal al nuevo módulo-routing.
-                - Redirigimos hacía la nueva ruta. Creamos un path con la misma ruta. Utilizamos la propiedad `loadChildren` y utilizando la sintaxis de dynamic import(importando el módulo de manera dinámica). Le pasamos un string con la ruta del nuevo módulo. Nos va a devolver una promesa que nos va a devolver el módulo
+                - Redirigimos hacía la nueva ruta. Creamos un path con la misma ruta. Utilizamos la propiedad `loadChildren` y utilizando la sintaxis de dynamic import (importando el módulo de manera dinámica). Le pasamos un string con la ruta del nuevo módulo. Nos va a devolver una promesa que nos va a devolver el módulo
         {path: 'contact-reactive', loadChildren: ()=>
-                import('./contact-reactive/contact-reactive.module').then(m => m.ContactReactiveModule)
+                import ('./contact-reactive/contact-reactive.module').then(m => m.ContactReactiveModule)
         },
         . `contact-reactive-routing.module.ts`(tiene la misma configuración que el app-routing.module.ts)
                 1. en el feature module `contact-reactive.module.ts` tenemos que declarar en declarations el formulario `ContactReactiveComponent` y borrarlo del módulo general `app.module.ts`. Nos da un error que nos indica que hay que importar el módulo de formularios reactivos (ReactiveFormsModule). También lo podemos borrar del módulo principal.
@@ -588,16 +588,16 @@ https://www.youtube.com/watch?v=i8jRNClDGRg&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl
 
 imports: [RouterModule.`forRoot`(routes)], no sólo tiene que ver con las rutas, sino que estos métodos estáticos que nos proporciona Angular los podemos utilizar como una library(bibliotecas).
 
-`forRoot` - se utiliza para colocar todas las rutas en el módulo principal raiz. Todo lo que no es lazy loading será eagle carga de manera inmediata todo el bondel. En principio, sólo se utiliza un `forRoot` en la aplicación. La intención es tener de manera directa. Lo que sea lazy loading tiene que ser `forChild` porque puede estar en otra factory(todo lo que va a necesitar la aplicación en ese momento). Al ser un módulo hijo Angular no lo carga en el inyector global. Se carga a demanda, cuando se necesita.
+`forRoot` - se utiliza para colocar todas las rutas en el módulo principal raíz. Todo lo que no es lazy loading será eagle carga de manera inmediata todo el bondel. En principio, sólo se utiliza un `forRoot` en la aplicación. La intención es tener de manera directa. Lo que sea lazy loading tiene que ser `forChild` porque puede estar en otra factory (todo lo que va a necesitar la aplicación en ese momento). Al ser un módulo hijo Angular no lo carga en el inyector global. Se carga a demanda, cuando se necesita.
 
-Son prácticamente iguales. La diferencia es que Angular utliza un método u otro para saber si estamos en el inyector principal o en nuestro propio.
+Son prácticamente iguales. La diferencia es que Angular utiliza un método u otro para saber si estamos en el inyector principal o en nuestro propio.
 
-### RET21 ¿Cómo hacer una peticion HTTP en Angular? CRUD
+### RET21 ¿Cómo hacer una petición HTTP en Angular? CRUD
 https://www.youtube.com/watch?v=Ypr6gU_rNlo&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=22
 
 ¿Qué es HttpClient Angular?
-HttpClient es un cliente con los verbos REST, y está basado en Observables .
-Si te estás preguntando ¿Cómo hacer una peticion HTTP en Angular?
+HttpClient es un cliente con los verbos REST, y está basado en Observables.
+Si te estás preguntando ¿Cómo hacer una petición HTTP en Angular?
 
         Crear añadir ciudades
         Crear borrar ciudades
@@ -669,16 +669,16 @@ Si te estás preguntando ¿Cómo hacer una peticion HTTP en Angular?
                 cities: City[] = [] nos devuelve una array
                 name: ya no lo necesitamos
 
-                implementamos el método onInit para ir a la API y hacer la petición para recuperar las ciudades. 
-                        1. Mediante el método constructor hacemos la inyección del service(DataService).
-                        2. En el método ngOnInit montamos la estructura para llamar a la API con el método que es un observable. Dentro de el recibimos un respon con                               data. Le llamaremos cities pero es un respon. Aquí recuperariamos los datos de la API.
+          implementamos el método onInit para ir a la API y hacer la petición para recuperar las ciudades. 
+             1. Mediante el método constructor hacemos la inyección del service(DataService).
+             2. En el método ngOnInit montamos la estructura para llamar a la API con el método que es un observable. Dentro de él recibimos un respon con                               data. Le llamaremos cities pero es un respon. Aquí recuperaríamos los datos de la API.
                                  ngOnInit(): void {
                                         this.dataSVC.getCities()
                                         .subscribe(cities => {
                                                 this.cities = [...cities];
                                         })
                                 }
-                        3. Modificamos el home.html
+             3. Modificamos el home.html
                                 export class CitiesComponent {
                                         @Input() city!: string; => `ahora será de tipo City`
                                         @Input() selection!: string; => `ahora será de tipo City`
@@ -687,24 +687,26 @@ Si te estás preguntando ¿Cómo hacer una peticion HTTP en Angular?
                                 onCitySelected(city: string): void{=> `ahora será de tipo City`
                                         this.citySelectedEvent.emit(city); 
                                 }
-                                A donde describiamos el objeto hemos de definir que propiedad hay que imprimir. {{city | titlecase}}=> city.name
-                                También modificamos la condición [ngClass]= "{'active': city === selection}"=> será city._id y selection._id, cuando el id coincida que se aplique el active.
-                                Modificamos el pipe:
+                A donde describíamos el objeto hemos de definir que propiedad hay que imprimir. {{city | titlecase}}=> city.name
+               También modificamos la condición [ngClass]= "{'active': city === selection}"=> será city._id y selection._id, cuando el id coincida que se aplique el active.
+                Modificamos el pipe:
                                 transform(values: string[], arg: string): string[] {=>`ahora recibimos una array de ciudades`
-                                Cambiamos el value por ciudad.
-                                => Añadimos ciudades en `home.component.ts`
-                                Enviamos a la API la nueva ciudad y añadimos la respuesta, lo que nos devuelve la API, a la array de ciudades
+               Cambiamos el value por ciudad.
+          
+=> Añadimos ciudades en `home.component.ts`
+                Enviamos a la API la nueva ciudad y añadimos la respuesta, lo que nos devuelve la API, a la array de ciudades
                                 addNewCity(city: string):void {
                                         //this.cities.push(city);
                                         this.dataSVC.addNewCity(city)
                                         .subscribe(res => {
                                                 this.cities.push(res)});
                                 }
-                                => Vamos al formulario para hacer cambios:
-                                Añadimos propiedad selection de tipo ciudad, para saber cuando el usuario selecciona una ciudad.
-                                En el form.html añadimos [(ngModel)]="selection?.name" le tenemos que indicar el name para que no salga el error [object][object]
-                                En el home.html podemos pasar la propiedad selection.
-                                Da error de que hay que definir un name. name="newItem"
+          
+=> Volvemos al formulario para hacer cambios:
+                Añadimos propiedad selection de tipo ciudad, para saber cuándo el usuario selecciona una ciudad.
+                En el form.html añadimos [(ngModel)]="selection?.name" le tenemos que indicar el name para que no salga el error [object][object]
+                En el home.html podemos pasar la propiedad selection.
+                Da error de que hay que definir un name. name="newItem"
 
 ### Modificaciones a hacer:
 - En form-new-item.component. html cuando enviamos a guardar le decimos que cuando se envie la propiedad se quede en blanco. (click)="onAddNewItem(newItem.value); newItem.value=''"
@@ -712,9 +714,10 @@ Si te estás preguntando ¿Cómo hacer una peticion HTTP en Angular?
 - Ocultar botón delete. Hasta que no se seleccione no se enseña(la ciudad marcada sea igual al id de la ciudad). En cities.component.ts                                   en el           <button> *ngIf= "city?._id === selection?._i
           
 ![image](https://user-images.githubusercontent.com/67627523/158240961-c35bfff1-d65e-424e-bba2-d155ae3ec29f.png)
-                                => Borramos ciudades en `home.component.ts`
-                                - Esta imagen 
-                                        viene de onCitySelected(city: City): void{
+          
+=> Borramos ciudades en `home.component.ts`
+         - Esta imagen 
+              viene de onCitySelected(city: City): void{
                                                         console.log('City->', city);
                                                         this.selection = city;
                                                         }
@@ -728,10 +731,11 @@ Si te estás preguntando ¿Cómo hacer una peticion HTTP en Angular?
                                                 this.cities = [...tempArray];
                                                 this.onClear(); => para que borre la consulta del input
                                         });
-                                => upDate ciudades en `home.component.ts`
+          
+=> upDate ciudades en `home.component.ts`
 
-                                =>Ocultamos los botones
-                                form.component.html - Hacer una condición si se selectiona un name funciona un botón sino el otro
+=>Ocultamos los botones
+                                form.component.html - Hacer una condición si se selecciona un name funciona un botón sino el otro
                                 <button *ngIf="!selection?.name" 
                                 <button *ngIf="selection?.name"
 
