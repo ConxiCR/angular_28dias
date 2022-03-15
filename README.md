@@ -779,7 +779,7 @@ En esta aplicación no estamos utilizando ni headers ni ningún parámetro, vamo
 ~~
 Ejemplos de spinners: https://loading.io/css/
         
-### RET23 ¿Qué es un Observable? Diferencias entre Promesa y Observable
+### RETO23 ¿Qué es un Observable? Diferencias entre Promesa y Observable
 https://www.youtube.com/watch?v=tuacd35TWIQ&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=24
 
 **Programación Reactiva**
@@ -830,6 +830,39 @@ En la aplicación:
         `data.service.ts` - Utilizamos observables normales, de string de datos. Utilizamos el http que viene dado por el módulo de Angular. Estos observables se completan de manera automática y no causan memory lix. P.e el método addCity(hasta que no hacemos el subscribe no se empieza a consumir el observable. Pero sólo lo hace una vez)
           
         `spinner.service.ts` - Declaramos una propiedad de tipo subject. Este observable también es un observer, se producen valores booleanos. Se puede leer fuera de la aplicación.
+### RET24 Content Projection en Angular (proyección de contenido en Angular)
+https://www.youtube.com/watch?v=UMYuF7-CTfg&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=25
+https://angular.io/guide/content-projection
+
+La proyección de contenido es un patrón en el que inserta o proyecta el contenido que desea usar dentro de otro componente. Es util para la reutilización de componentes.
+Por ejemplo, podría tener un componente Tarjeta que acepte contenido proporcionado por otro componente.
+
+Implementaciones posibles:
+
+        . Single-slot content projection
+        . Multi-slot content projection
+        . Conditional content projection
+
+Creamos un nuevo componente `ng g c card -m app`
+Creamos una card de bootstrap
+Llamamos al nuevo componente `en home.component.html`. Creamos todas las cards que queramos.
+*Como implementamos el contect projection?*
+        En el card.component.html  - Definimos <ng-content></ng-content>
+                                                <ng-content select="[card-body]"></ng-content> nos da la opción de un selector para definir en que slot queremos trabajar el contenido. Le podemos pasar clases, id o atributos. Las clases son menos controlables. En este caso, colocamos un atributo.
+        En el home.component.html pasamos nuestro contenido. 
+                - Se renderiza de una manera más fácil que con el input pero no de manera dinámica. 
+                - Da igual el orden ya que se rije por los stots.
+                - Se puede reutilizar de manera facil.
+                - Se cambia el content.
+
+
+
+
+
+
+
+
+
 
 
 

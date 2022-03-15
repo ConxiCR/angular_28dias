@@ -18,7 +18,22 @@
                         [city]="city" [selection]="selection">
             </app-cities>
             <!--</ul>-->
-         </div>   
+         </div> 
+         <hr>
+         <app-card>
+             <div card-header>Soy Header</div>
+             <div card-body>Soy Body</div>
+         </app-card>
+         <hr>
+         <app-card>
+            <div card-header>Soy litle Header</div>
+            <div card-body>Soy litle Body</div>
+         </app-card> 
+         <hr>
+         <app-card>
+            <div card-header>Soy Super Header</div>
+            <div card-body>Soy Super Body</div>
+         </app-card>   
         <div class="col-md-4">
             <div *ngIf="selection?.name">
                 <p>Your city is: {{selection?.name}}</p>
