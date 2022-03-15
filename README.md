@@ -830,7 +830,7 @@ En la aplicación:
         `data.service.ts` - Utilizamos observables normales, de string de datos. Utilizamos el http que viene dado por el módulo de Angular. Estos observables se completan de manera automática y no causan memory lix. P.e el método addCity(hasta que no hacemos el subscribe no se empieza a consumir el observable. Pero sólo lo hace una vez)
           
         `spinner.service.ts` - Declaramos una propiedad de tipo subject. Este observable también es un observer, se producen valores booleanos. Se puede leer fuera de la aplicación.
-### RET24 Content Projection en Angular (proyección de contenido en Angular)
+### RETO24 Content Projection en Angular (proyección de contenido en Angular)
 https://www.youtube.com/watch?v=UMYuF7-CTfg&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=25
           
 https://angular.io/guide/content-projection
@@ -866,9 +866,38 @@ Implementaciones posibles:
                 - Da igual el orden ya que se rije por los stots.
                 - Se puede reutilizar de manera facil.
                 - Se cambia el content.
+### RET25 NG-CONTAINER & NG-TEMPLATE ANGULAR 🅰️ 
+https://www.youtube.com/watch?v=H1D4NwhOAm8&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=26
 
+NG-TEMPLATE
+El elemento ng-template de Angular define una plantilla que no se representa de forma predeterminada.
 
+Con ng-template, puede definir el contenido de la plantilla que Angular solo representa cuando usted, directa o indirectamente, le indica específicamente que lo haga, lo que le permite tener un control total sobre cómo y cuándo se muestra el contenido.
 
+NG-CONTAINER https://angular.io/api/core/ng-container
+
+Un elemento especial que puede contener directivas estructurales sin agregar nuevos elementos al DOM.
+
+El ng-container nos permite usar directivas estructurales sin ningún elemento adicional, asegurándonos de que los únicos cambios de DOM que se aplican son los dictados por las propias directivas.
+
+Podemos sustituir el div por  <ng-container *ngIf="selection?.name">. Lo que supone un elemento menos en el DOM.
+Otra situación, cuando se quiere utilizar un ngFor y un ngIf p.e.verificar si una determinada propiedad esta activa en la variable local. No se puede utilizar dos directivas. Utilizariamos en ng-container para comprobar que hay al menos una ciudad. Si esa condición se cumple pasa y nos enseña las ciudades sino da un mensage al usuario.
+
+        <ng-container *ngIf="cities.length > 1"; else templateEmpty>
+                <!--<ul>-->
+                <app-cities *ngFor="let city of (cities | filter: criteria)"
+                            (cityDeleteEvent)="onCityDelete($event)"
+                            (citySelectedEvent)="onCitySelected($event)" 
+                            [city]="city" [selection]="selection">
+                </app-cities>
+                <!--</ul>-->
+        </ng-container>
+        <ng-template #templateEmpty>
+            We dont have cities xD
+        </ng-template>
+Al usuario no le reporta nada, ya que no ocurre nada. Para eso podemos utilizar el ng-template.
+
+Ganamos performes ya que ahorramos en elementos del DOM y no tiene que recorrer en el tree más elementos.
 
 
 
