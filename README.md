@@ -932,11 +932,13 @@ componente `form-new-item.ts`
 Sí queremos que la aplicación gane el foco. Como tenemos la referencia del selector, dentro del método AfterViewInit es mucho más facil añadirle métodos como el `focus`.
 
 
-~~Hay que utilizar el decorador @ViewChild en el ciclo de vida adecuado, cuando la vista se haya creado, ya que sino dará undefine. Para evitar esto hay un método `AfterViewInit` que se encarga de asegurarse que nuestra vista ha iniciado. En nuestro caso, el ciclo de vida no existe y por eso no ha inciado. Se busca el elemento en el DOM cuando realmente existe. Podremos acceder al Input.~~
+>Hay que utilizar el decorador @ViewChild en el ciclo de vida adecuado, cuando la vista se haya creado, ya que sino dará undefine. Para evitar esto hay un método `AfterViewInit` que se encarga de asegurarse que nuestra vista ha iniciado. En nuestro caso, el ciclo de vida no existe y por eso no ha inciado. Se busca el elemento en el DOM cuando realmente existe. Podremos acceder al Input.
 
 También podemos utilizar la `directiva NgModel como selector`. 
-        `home.component.ts` añadimos el @ViewChild(NgModel) filterInput!: NgModel; 
-        !!ojo: en el html es ngModel y en el .ts es NgModel en mayúsculas
+        `home.component.ts` añadimos el @ViewChild(NgModel) filterInput!: NgModel;
+          
+>ojo: en el html es ngModel y en el .ts es NgModel en mayúsculas
+          
         Cuando el input cambie podriamos crear un método filter o un buscador sin tener que utilizar el pipe. Podemos utilizar el valueChanges que es un observable. Cada vez que el input del buscador cambie lo recibiremos y podremos reaccionar a ese cambio.
                 ngAfterViewInit(): void {
                         this.filterInput.valueChanges?.subscribe(res => console.log('res', res))
