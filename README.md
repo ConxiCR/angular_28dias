@@ -781,8 +781,10 @@ Ejemplos de spinners: https://loading.io/css/
         
 ### RET23 ¿Qué es un Observable? Diferencias entre Promesa y Observable
 https://www.youtube.com/watch?v=tuacd35TWIQ&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=24
-~~
-Programación Reactiva - La es programación orientada al manejo de streams de datos asíncronos y la propagación de los cambio.
+
+**Programación Reactiva**
+         
+La es programación orientada al manejo de streams de datos asíncronos y la propagación de los cambio.
 En JavaScript se utiliza `RxJS`. 
         Una library para componer programas asíncronos y basados en eventos usando secuencias observables.
         Nos permite hacer programación reactiva.
@@ -790,33 +792,43 @@ En JavaScript se utiliza `RxJS`.
         Terminos relacionados que hay que tener en cuenta:
         Observables, Operators, Suscription, Subjects
 
-`¿Qué es un Observable?` 
-        `Un string de datos`: Son colecciones o secuencia de eventos continuos ordenados en el tiempo.
+*¿Qué es un Observable?*
+          
+`Un string de datos`: Son colecciones o secuencia de eventos continuos ordenados en el tiempo.
                 1. Eventos de la UI(un botón)
                 2. HTTP Request
                 3. Web Sockets
                 4. Estado de una APP
                 Representa una relación de 1 a infinito. Basado en el `patrón Observe` cuyos pilares lo forman Observable, Observadores, Suscripciones. 
-        `Subject` Es un tipo de observable especial. Tiene el mismo comportamiento que el observable, pero este puede compartir data con varios observadores u observers. p.e.(interceptor que utilimos un subject que puede ser un observador y un observer a la vez)
-                Tipos:
+          
+`Subject` Es un tipo de observable especial. Tiene el mismo comportamiento que el observable, pero este puede compartir data con varios observadores u observers. p.e.(interceptor que utilimos un subject que puede ser un observador y un observer a la vez)
+          
+***Tipos:***
+          
                 1. Subject
                 2. Behavior Subject. Tiene que inicializarse.
                 3. Replay Subject
                 4. Async Subject
         
-        Observable vs Promise
-                ### Promesas
+`Observable vs Promise`
+          
+   ***Promesas***
+          
                 1. Se ejecuta inmediatamente.
                 2. Emite un solo valor. Puede ser un resort o un reject.
                 3. Envía los errores a las promesas hija. Hace como un push.
                 4. Usa la cláusula .then()
-                ### Observables
+          
+  ***Observables***
+          
                 1. No comienza hasta que no hacemos la suscripción.
                 2. Múltiples valores a lo largo del tiempo. Puede causar problemas de memo link ya que esta continuamente abierto.
                 3. Observable proporciona operadores ( Unos 300 operadores, p.e. RxJS, map, etc).
 
 En la aplicación:
+          
         `data.service.ts` - Utilizamos observables normales, de string de datos. Utilizamos el http que viene dado por el módulo de Angular. Estos observables se completan de manera automática y no causan memory lix. P.e el método addCity(hasta que no hacemos el subscribe no se empieza a consumir el observable. Pero sólo lo hace una vez)
+          
         `spinner.service.ts` - Declaramos una propiedad de tipo subject. Este observable también es un observer, se producen valores booleanos. Se puede leer fuera de la aplicación.
 
 
