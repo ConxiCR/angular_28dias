@@ -7,8 +7,11 @@
             <input type="text" id="newItem" name="newItem" class="form-control" [ngModel]="selection?.name" #newItem>
         </div>
         <div class="col-auto">
-            <button *ngIf="!selection?.name" (click)="onAddNewItem(newItem.value); newItem.value=''" type="button" class="btn" [ngClass]="[className]">Add {{label}}</button>
-            <button *ngIf="selection?.name" (click)="onUpDateItem(selection, newItem.value); newItem.value=''" type="button" class="btn" [ngClass]="[className]">UpDate {{label}}</button>
+            <!--<button *ngIf="!selection?.name" (click)="onAddNewItem(newItem.value); newItem.value=''" type="button" class="btn" [ngClass]="[className]">Add {{label}}</button>
+            <button *ngIf="selection?.name" (click)="onUpDateItem(selection, newItem.value); newItem.value=''" type="button" class="btn" [ngClass]="[className]">UpDate {{label}}</button>-->
+            <!--versión con @ViewChild-->
+            <button *ngIf="!selection?.name" (click)="onAddNewItem()" type="button" class="btn" [ngClass]="[className]">Add {{label}}</button>
+            <button *ngIf="selection?.name" (click)="onUpDateItem()" type="button" class="btn" [ngClass]="[className]">UpDate {{label}}</button>
         </div>
 
     </div>

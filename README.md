@@ -866,7 +866,7 @@ Implementaciones posibles:
                 - Da igual el orden ya que se rije por los stots.
                 - Se puede reutilizar de manera facil.
                 - Se cambia el content.
-### RET25 NG-CONTAINER & NG-TEMPLATE ANGULAR 🅰️ 
+### RETO25 NG-CONTAINER & NG-TEMPLATE ANGULAR 🅰️ 
 https://www.youtube.com/watch?v=H1D4NwhOAm8&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=26
 
 NG-TEMPLATE
@@ -899,8 +899,48 @@ Al usuario no le reporta nada, ya que no ocurre nada. Para eso podemos utilizar 
 
 Ganamos performes ya que ahorramos en elementos del DOM y no tiene que recorrer en el tree más elementos.
 
+### RET26 ¿ViewChild Angular como funciona? 🅰️
+https://www.youtube.com/watch?v=6J5nK7PKT6U&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=27
+
+Es un decorador de propiedades que configura una consulta de vista.
+El detector busca el primer elemento o directiva que coincida con el selector en la vista (DOM).
+Si el DOM cambia y un elemento secundario nuevo coincide con el selector, la propiedad se actualiza.
+
+**selectores admitidos**
+. Cualquier class decorada con @Component o @Directive
+. Template reference variable como string
+. TemplateRef (ng-template)
+. NgModel
 
 
+Proyecto:
+
+En el template `contact.component.html`:
+        . evento submit pasabamos el contacForm porque en el .ts no teniamos manera de acceder a él 
+        (ngSubmit)="onSubmit(contactForm)" - eliminamos el argumento contactForm. Vamos al .ts para utilizar el @ViewChild() que espera un selector. En este caso utilizaremos la referencia del template variable `contactFor` que utilizamos como string. Lo tipamos. De esta manera, ya podemos acceder al formulario en el método onSubmit(). Así tendremos todos los métodos y estados que tiene el formulario como tal.
+
+componente `form-new-item.html`:
+
+        . Se encarga tanto de modificar una ciudad como añadir una nueva. Para llamar a los métodos de añadir o modificar pasabamos unos argumentos.
+        Modificaciones: no enviamos el newItem.value. Modificamos los métodos en .ts. Utilizamos el template variable `newItem`. Y será de tipo `ElementRef` @ViewChild('newItem') newItem!: ElementRef;
+        Después de llamar a los método seteamos a bacio el valor del template reference. Se puede quitar y trasladarlo al .ts. Esta lógica es más importante que este aquí, ya que se puede testear y asegurarnos de que el input queda en blanco después de añadir o borrar un elemento. 
+
+componente `form-new-item.ts`      
+
+        Cuando creamos un nuevo Item recibiremos nativeElement y el valor. Como lo hemos tipado como ElementRef tendremos acceso a la propiedad nativeElement.
+        El selection lo podemos pasar por el ts en lugar de por el html. Era nuestro item.
+Sí queremos que la aplicación gane el foco. Como tenemos la referencia del selector, dentro del método AfterViewInit es mucho más facil añadirle métodos como el `focus`.
+
+
+~~Hay que utilizar el decorador @ViewChild en el ciclo de vida adecuado, cuando la vista se haya creado, ya que sino dará undefine. Para evitar esto hay un método `AfterViewInit` que se encarga de asegurarse que nuestra vista ha iniciado. En nuestro caso, el ciclo de vida no existe y por eso no ha inciado. Se busca el elemento en el DOM cuando realmente existe. Podremos acceder al Input.~~
+
+También podemos utilizar la `directiva NgModel como selector`. 
+        `home.component.ts` añadimos el @ViewChild(NgModel) filterInput!: NgModel; 
+        !!ojo: en el html es ngModel y en el .ts es NgModel en mayúsculas
+        Cuando el input cambie podriamos crear un método filter o un buscador sin tener que utilizar el pipe. Podemos utilizar el valueChanges que es un observable. Cada vez que el input del buscador cambie lo recibiremos y podremos reaccionar a ese cambio.
+                ngAfterViewInit(): void {
+                        this.filterInput.valueChanges?.subscribe(res => console.log('res', res))
+                }
 
 
 

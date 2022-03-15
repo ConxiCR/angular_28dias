@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 import { City } from '../services/data.service';
 
 @Component({
@@ -7,16 +7,23 @@ import { City } from '../services/data.service';
   styleUrls: ['./form-new-item.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FormNewItemComponent {
+export class FormNewItemComponent implements AfterViewInit {
+
 @Input() className = 'btn-primary';
 @Input() label!: string;
 @Input() selection!: City;
+@ViewChild('newItem') newItem!: ElementRef;
 
 @Output() newItemEvent = new EventEmitter<string>();
 @Output() upDateItemEvent = new EventEmitter<City>();
 
+ngAfterViewInit(): void {
+  //console.log('this.newItem', this.newItem);
+  this.newItem.nativeElement.focus();
+}
+
   //método que no devuelve nada. Recibe item
-  onAddNewItem(item: string): void{
+  /*onAddNewItem(item: string): void{
     //console.log('Item ->', item)
     this.newItemEvent.emit(item);
   }
@@ -27,8 +34,24 @@ export class FormNewItemComponent {
     const city: City = {
       _id: item._id,
       name: change
-    }
+    }*/
+
+    //ViewChild
+  onAddNewItem(): void{
+    this.newItemEvent.emit(this.newItem.nativeElement.value);
+    this.onClear();
+  }
+  onUpDateItem(): void{
+    const city: City = {
+      _id: this.selection._id,
+      name: this.newItem.nativeElement.value
+    };
     this.upDateItemEvent.emit(city);
+    this.onClear();
+  }
+
+  private onClear(): void{
+    this.newItem.nativeElement.value = '';
   }
   /*counterRender(): boolean{
     console.log('Render Form');

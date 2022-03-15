@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -15,6 +15,7 @@ interface ContactForm{
   styleUrls: ['./contact.component.scss']
 })
 export class ContactComponent implements OnInit {
+  @ViewChild('contactForm') contactForm!: NgForm;
   id!: string;
   //para enlazar con el formulario
   model = {
@@ -31,8 +32,11 @@ export class ContactComponent implements OnInit {
       this.id = params['id'];
     })
   }
-  onSubmit(form: NgForm): void {
-    console.log('Form values', form);
+  /*onSubmit(form: NgForm): void {
+     console.log('Form values', form);
+  }*/
+  //vesrsión con el @ViewChild
+  onSubmit(): void {
+    console.log('Form values', this.contactForm)
   }
-
 }
