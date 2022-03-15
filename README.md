@@ -749,10 +749,13 @@ En esta aplicación no estamos utilizando ni headers ni ningún parámetro, vamo
 => Creamos nueva carpeta y nuevo componente `ng g c shared/spinner -m app`
         spinner loading hear - https://codepen.io/DariaIvK/pen/EpjPRM
 => Copiamos el código html y el css del loading.
+          
 => Colocamos el selector <app-spinner></app-spinner> en app.component.html.
+          
 => Creamos un service para que decida cuando mostrarse o cuando ocultarse. `ng g s shared/spinner`
                 . Creamos la propiedad isLoading$. `El símbolo del $ nos indica que es un observable. Convención`.
                 . Creamos dos métodos para enseñar o ocultar el loading.
+          
 => Inyectamos el service en el componente `spinner spinner.component.ts`. Para saber cuando mostrarlos o ocultarlo. 
                 . Creamos la propiedad isLoading$. Podremos acceder a la propiedad en nuestro service.
                 . Añado html en el componente para utilizar el observable y para subscribirlo, ya que sólo no haria nada.Utilizamos un pipe (async). Para que subscribir al valor del observable como cuando no este. Utilizamos "overlay" para cuando el loading este cargando y así bloqueamos la pantalla.
@@ -762,13 +765,16 @@ En esta aplicación no estamos utilizando ni headers ni ningún parámetro, vamo
                 <div></div>
               </div>
             </div>`
+          
 => Creamos el interceptor `ng g interceptor shared/spinner/spinner --skip-tests=true`
         El fichero que se crea sigue la estructura de: una clase de typescript que esta implementando una interface el decorador injectable y un método que tiene la request y un next. Es muy parecido a un middlewear como en backend. Se sigue la ruta, se continua adelante(next) si todo se cumple.
                 . Utilizamos el pipe y dentro utilizaremos un operador de rxjs(finalize). Llamaremos al método hide para que oculte el spinner . `Creación del interceptor`
+          
 => Implementammos en el app.module para que escuche las peticiones http. En providers:
         providers: [
     {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true}
   ], El multi significa que podemos utilizar más de un interceptor.
+          
 => Modificamos estilos a la clase del spinner para que quede por encima de todos los elementos de la web. Y este centrado.
         
 
