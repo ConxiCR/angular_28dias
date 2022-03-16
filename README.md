@@ -1189,49 +1189,66 @@ Modificaciones en el `service`
 
 En el home.component.ts tenemos una propiedad `selection`. Esta propiedad la vamos a llevar a un observable para poderlo utilizar en el reactive form.
 1. creación de una constante `initCity` en el service.
+  
         const initCity:City = {
                 _id: '',
                 name: ''
         };
 2. Utilizamos el BehaviorSubject(le tenemos que pasar un argumento por defecto)
+  
         private city$ = new BehaviorSubject<City>(initCity);
+  
 3. Creamos un get selectedCity$, que va a ser un observable y va a devolver un observable. Esto estará expuesto publicamente. Para poder leer la propiedad.
+        
         get selectedCity$():Observable<City>{
                 return this.city$.asObservable();
         }
 4. Necesitamos setear/guardar una ciudad. Llamamos a la propiedad city aplicando el método `next` a donde vamos a almacenar la ciudad
+  
         setCity(city:City):void{
                 this.city$.next(city);
         }
 
-hr/Diferencias entre subject y BehaviorSubject:
+**Diferencias entre subject y BehaviorSubject:**
 
-**Subject**                                                         **BehaviorSubject**
-Observable especial que permite realizar                        Observable especial.
-diversas tareas.
-No permite emitir el nuevo valor emitido                        -Emite el nuevo valor a todas las
-                                                                -nuevas suscripciones. 
-                                                                -Permite obtener el último valor emitido con el getValue().
-                                                                -Requiere un valor por defecto.
-                                                                -Inmediatamente hay una suscripción
+  
+**Subject**    
+  
+* Observable especial que permite realizar diversas tareas.
+* No permite emitir el nuevo valor emitido.
+  
+**BehaviorSubject**
+  
+* Observable especial.
+* Emite el nuevo valor a todas las nuevas suscripciones. 
+* Permite obtener el último valor emitido con el getValue().
+* Requiere un valor por defecto.
+* Inmediatamente hay una suscripción.
+  
 `home.component.ts`
-. Tenemos inyectado el service: constructor(private readonly dataSvc: DataService){}
-. Utilizamos la dataSvc. Seleccionando la propiedad pública `selectedCity$` que es un observable por lo tanto nos podemos suscribir, nos va a devolver una ciudad. Le vamos a asignar el valor que devuelva a la propiedad `selection`
+  
+- Tenemos inyectado el service: `constructor(private readonly dataSvc: DataService){}`
+- Utilizamos la dataSvc. Seleccionando la propiedad pública `selectedCity$` que es un observable por lo tanto nos podemos suscribir, nos va a devolver una ciudad. Le vamos a asignar el valor que devuelva a la propiedad `selection`
+  
         ngOnInit(): void {
                 this.dataSvc.selectedCity$.subscribe(city=> this.selection = city)
 
-. En la propiedad `onCitySelecte` se asignaba a la variable local `selection` el valor. Ahora al tener un método en el service `dataSvc` la guardamos en el servicio para si alguien ultiza la propiedad tendré el valor actualizado.
+- En la propiedad `onCitySelecte` se asignaba a la variable local `selection` el valor. Ahora al tener un método en el service `dataSvc` la guardamos en el servicio para si alguien ultiza la propiedad tendré el valor actualizado.
+  
         onCitySelected(city: City): void{
                 this.dataSvc.setCity(city);
         }
 
 `contact-reactive.component.ts`(p.e. quisieramos saber la ciudad seleccionada en este componente)
+  
         1. Inyectamos el service. `private readonly dataSvc: DataService`
         2. Creamos una propiedad que será un observable que será igual a la dataService más 
         una propiedad que se llama igual. `selectedCity$ = this.dataSvc.selectedCity$;`
 
 `contact-reactive.component.html`
-Vamos a mostrar el nombre que se esta pasando. Utilizaremos un pipe `async` para permitirnos suscribir al observable. Sólo queremos mostrar el nombre por lo que utilizaremos ()
+  
+Vamos a mostrar el nombre que se esta pasando. Utilizaremos un pipe `async` para permitirnos suscribir al observable. Sólo queremos mostrar el nombre por lo que utilizaremos ().
+  
         <h1>Contact form {{name}} {{(selectedCity$ | async)?.name}}</h1>
 
 
