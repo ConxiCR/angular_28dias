@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-contact-reactive',
@@ -12,9 +13,13 @@ export class ContactReactiveComponent implements OnInit {
   contactForm!: FormGroup;
   name!: string;
   departments: string[] = [];
+  selectedCity$ = this.dataSvc.selectedCity$;
+
+
 
   constructor( private readonly fb: FormBuilder ,
-                private readonly route: ActivatedRoute) { }
+                private readonly route: ActivatedRoute,
+                private readonly dataSvc: DataService) { }
 
   ngOnInit(): void {
     this.departments = this.route.snapshot.data['departments']
@@ -25,6 +30,11 @@ export class ContactReactiveComponent implements OnInit {
     )
     //igualamos la propiedad al método
     this.contactForm = this.initForm();
+      //this.onPathValue();
+      //this.onSetValue();
+  }
+  onPathValue(){
+    this.contactForm.patchValue({name: 'Hola'});
   }
   //método
   onSubmit(): void {
