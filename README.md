@@ -1174,7 +1174,7 @@ Cuando el input cambie podríamos crear un método filter o un buscador sin tene
                 ngAfterViewInit(): void {
                         this.filterInput.valueChanges?.subscribe(res => console.log('res', res))
                 }
-### RET27 Comunicación entre componentes en Angular con Observable 🅰️
+### RETO27 Comunicación entre componentes en Angular con Observable 🅰️
 https://www.youtube.com/watch?v=Sr1tg_NrQFk&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=28
 
 https://www.danywalls.com/how-to-share-data-between-components-in-angular
@@ -1251,9 +1251,161 @@ Vamos a mostrar el nombre que se esta pasando. Utilizaremos un pipe `async` para
   
         <h1>Contact form {{name}} {{(selectedCity$ | async)?.name}}</h1>
 
+### RET28 Configurar eslint y prettier en Angular 🅰️
+https://www.youtube.com/watch?v=bCkm9uxF4jY&list=PL_9MDdjVuFjFBed4Eor5qj1T0LLahl4z0&index=29
+
+https://gist.github.com/bezael/5086db4bf7fd4655969a8da4e5ec1ab8 `fichero configuración`
+
+https://github.com/angular-eslint/angular-eslint#notes-for-eslint-plugin-prettier-users `documentación schematics`(buscamos en package->eslint-pluguin->docs/rules->use-lifecycle-interface.md(regla aplicada))
+
+El último reto trata de mostrar todas las configuraciones de ESLint y el Prettier. Sus configuraciones, estructura, funcionamiento, etc.
+
+1. instalación del schematics ESLint. [Install Angular ESLint](#ESLint-configuration)
+2. instalación dependencia Prettier.
+        * Crear fichero en el route. [Pretier configuration `.prettierrc`](#Prettier-Configuration)
+        * Crear fichero en el route. [Pretier configuration `.prettierignore`](#Prettier-Ignore)
+3. Instalación extensiones VSCode [VSCode](#VSCode-extensions)
+4. Dentro del VSCode de Windows->archivo->preferencias->configuración->parte superior derecha carpeta fichero settings.json(abrir configuración(JSOn))[settings.json](#Add-following)
+5. Creación de un script. Para fijar errores de manera automática [Fix Lint en package.json](#Fix-Lint)
+6. En el terminal escribimos `ng lint` y determinará si hay errores en los ficheros
+                                
+
+### Install Angular ESLint
+`ng add @angular-eslint/schematics`
+Crea un fichero ESLint.json y ha modificado ficheros .json.
+En el fichero `ESLint.json` añado una nueva rule: (si importamos el ngOnInit el método no puede estar vacío, lo tenemos que estar utilizando)
+        
+  "rules": {
+    "@angular-eslint/use-lifecycle-interface": [
+      "error"
+    ]
+  }
+}
+
+### Install Prettier and Prettier-ESLint dependencies
+`npm i prettier prettier-eslint eslint-config-prettier eslint-plugin-prettier -D`
+Sólo se necesitan en desarrollo -D.
+
+## ESLint configuration
+Filename: `.eslintrc.json`
+```json
+// https://github.com/angular-eslint/angular-eslint#notes-for-eslint-plugin-prettier-users
+{
+  "root": true,
+  "ignorePatterns": ["projects/**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts"],
+      "parserOptions": {
+        "project": ["tsconfig.json"],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates",
+        "plugin:prettier/recommended"
+      ],
+      "rules": {
+        "@angular-eslint/component-class-suffix": [
+          "error",
+          {
+            "suffixes": ["Page", "Component"]
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/use-lifecycle-interface": [
+          "error"
+        ],
+        "@typescript-eslint/member-ordering": 0,
+        "@typescript-eslint/naming-convention": 0
+      }
+    },
+    {
+      "files": ["*.html"],
+      "extends": ["plugin:@angular-eslint/template/recommended"],
+      "rules": {}
+    },
+    {
+      "files": ["*.html"],
+      "excludedFiles": ["*inline-template-*.component.html"],
+      "extends": ["plugin:prettier/recommended"],
+      "rules": {
+        "prettier/prettier": ["error", { "parser": "angular" }]
+      }
+    }
+  ]
+}
+
+```
+
+### Prettier Configuration
+Filename: `.prettierrc`
+```json
+{
+  "tabWidth": 2,
+  "useTabs": false,
+  "singleQuote": true,
+  "semi": true,
+  "bracketSpacing": true,
+  "arrowParens": "avoid",
+  "trailingComma": "es5",
+  "bracketSameLine": true,
+  "printWidth": 80
+}
+```
+### Prettier Ignore
+Filename: `.prettierignore`
+```
+dist
+node_modules
+```
 
 
+### VSCode extensions:
+```
+dbaeumer.vscode-eslint
+esbenp.prettier-vscode
+```
 
+### Add following to your .vscode/settings.json file:
+```
+{
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": false
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.formatOnSave": false
+  },
+},
+"editor.suggest.snippetsPreventQuickSuggestions": false,
+"editor.inlineSuggest.enabled": true
+```
+
+### Add Fix Lint and Prettier errors command in package.json
+`"lint:fix": "ng lint --fix"`
 
 
 

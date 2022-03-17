@@ -20,7 +20,7 @@ import { City } from '../services/data.service';
     </ul>`,
     
   styleUrls: ['./cities.component.scss'],
-  //changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CitiesComponent {
   @Input() city!: City;

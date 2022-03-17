@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
         this.cities.push(res)});
   }
   onCitySelected(city: City): void{
-    //console.log('City->', city);
+    console.log('City->', city);
     //this.selection = city;
     this.dataSvc.setCity(city);
   }

@@ -14,9 +14,5 @@ import { SpinnerService } from './spinner.service';
 export class SpinnerComponent {
   isLoading$ = this.SpinnerSvc.isLoading$;
 
-  constructor(private readonly SpinnerSvc: SpinnerService) { }
-
-  ngOnInit(): void {
-  }
-
+  constructor(private readonly SpinnerSvc: SpinnerService) {}
 }
