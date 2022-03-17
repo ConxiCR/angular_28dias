@@ -1,6 +1,8 @@
 # Angular28Dias
 
-### Visit `wiki` https://github.com/ConxiCR/angular_28dias.wiki.git
+Checkout the [Wiki page] https://github.com/ConxiCR/angular_28dias/.wiki.git
+
+relative: [../../wiki](../../wiki)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.1.2.
 #### Development server
