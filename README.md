@@ -922,7 +922,7 @@ HttpClient es un cliente con los verbos REST, y está basado en Observables.
                                                         this.selection = city;
                                                         }
                                                         onCityDelete(id: string): void{
-                                                        console.log('id', id);![Uploading image.png…]()
+                                                        console.log('id', id);![image](https://user-images.githubusercontent.com/67627523/158793868-0c51ca3a-67db-4763-a808-34eb120c7ffc.png)
                                                         }
                                  . Creamos un confirm('Are you sure?') para preguntar al usuario
                                  . if(confirm('Are you sure?')){
@@ -1262,12 +1262,14 @@ El último reto trata de mostrar todas las configuraciones de ESLint y el Pretti
 
 1. instalación del schematics ESLint. [Install Angular ESLint](#ESLint-configuration)
 2. instalación dependencia Prettier.
-        * Crear fichero en el route. [Pretier configuration `.prettierrc`](#Prettier-Configuration)
-        * Crear fichero en el route. [Pretier configuration `.prettierignore`](#Prettier-Ignore)
+* Crear fichero en el route. [Pretier configuration `.prettierrc`](#Prettier-Configuration)
+* Crear fichero en el route. [Pretier configuration `.prettierignore`](#Prettier-Ignore)
 3. Instalación extensiones VSCode [VSCode](#VSCode-extensions)
 4. Dentro del VSCode de Windows->archivo->preferencias->configuración->parte superior derecha carpeta fichero settings.json(abrir configuración(JSOn))[settings.json](#Add-following)
 5. Creación de un script. Para fijar errores de manera automática [Fix Lint en package.json](#Fix-Lint)
 6. En el terminal escribimos `ng lint` y determinará si hay errores en los ficheros
+  
+![image](https://user-images.githubusercontent.com/67627523/158793995-6d10ae89-ccb8-4844-9e49-ca7a18d22b9b.png)
                                 
 
 ### Install Angular ESLint
