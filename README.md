@@ -1,6 +1,6 @@
 # Angular28Dias
 
-Checkout the [Wiki page] https://github.com/ConxiCR/angular_28dias/.wiki.git
+Checkout the [Wiki page]https://github.com/ConxiCR/angular_28dias/.wiki.git
 
 relative: [../../wiki](../../wiki)
 
